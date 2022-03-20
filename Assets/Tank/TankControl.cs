@@ -6,7 +6,8 @@ public class TankControl : MonoBehaviour
     public Transform Gun;
     public Transform Muzzle;
 
-    public float angle;
+    public int HP = 1000;
+    public float angle = 0f;
     public float force;
 
     public void Fire()
