@@ -22,6 +22,8 @@ public class TweeBeurtenTodo : INode
             {
                 nrAlive++;
                 GameController._instance.addThingToDo(tank.GetInteraction());
+                //right before the current tank, we need to couple the UI: (and we add it AFTER the turn because we're working with a stack)
+                GameController._instance.addThingToDo(new ConnectUI(tank));
             }
         }
         Debug.Log($"Nieuwe beurt; {nrAlive} levende tanks");

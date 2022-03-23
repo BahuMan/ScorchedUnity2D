@@ -27,6 +27,11 @@ public class ChatBubbleControl : MonoBehaviour
         Debug.Log("ShowChatBubble converted " + worldCoordinates.position + " to " + screenpoint);
         transform.position = screenpoint + offset;
         Chattext.text = theText;
+        Chattext.CalculateLayoutInputHorizontal();
+        Chattext.CalculateLayoutInputVertical();
+        Chattext.LayoutComplete();
+
+        ((RectTransform)this.transform).sizeDelta = Chattext.rectTransform.sizeDelta;
     }
 
     public void HideChatBubble()

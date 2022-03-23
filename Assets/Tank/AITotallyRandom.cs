@@ -25,8 +25,8 @@ public class AITotallyRandom : MonoBehaviour, SimpleBehaviour.INode
         if (newTurn == true) ChooseNewValues();
 
         float halfway = (Time.time - turnStartTime) / delaySeconds;
-        myTank.angle = Mathf.Lerp(oldAngle, newAngle, halfway);
-        myTank.force = Mathf.Lerp(oldForce, newForce, halfway);
+        myTank.Angle = Mathf.Lerp(oldAngle, newAngle, halfway);
+        myTank.Force = Mathf.Lerp(oldForce, newForce, halfway);
 
         if (Time.time > (turnStartTime + delaySeconds))
         {
@@ -42,8 +42,8 @@ public class AITotallyRandom : MonoBehaviour, SimpleBehaviour.INode
     //a new turn started; choose new angle/force and reset timer:
     private void ChooseNewValues()
     {
-        oldAngle = myTank.angle;
-        oldForce = myTank.force;
+        oldAngle = myTank.Angle;
+        oldForce = myTank.Force;
         newAngle = Random.Range(-10f, 190f);
         newForce = Random.Range(5f, 50f);
         Debug.Log("My turn, now! angle = " + oldAngle + " -> " + newAngle + ", force = " + oldForce + " -> " + newForce);

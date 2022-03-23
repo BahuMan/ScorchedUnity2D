@@ -15,13 +15,13 @@ public class HumanInteraction : MonoBehaviour, SimpleBehaviour.INode
     {
         if (Mathf.Abs(Input.GetAxis("Horizontal")) > .1f)
         {
-            myTank.angle -= Input.GetAxis("Horizontal");
-            myTank.angle = System.Math.Min(190f, System.Math.Max(-10f, myTank.angle));
+            myTank.Angle -= Input.GetAxis("Horizontal");
+            myTank.Angle = System.Math.Min(190f, System.Math.Max(-10f, myTank.Angle));
         }
         if (Mathf.Abs(Input.GetAxis("Vertical")) > .1f)
         {
-            myTank.force += Input.GetAxis("Vertical");
-            myTank.force = System.Math.Min(1000f, System.Math.Max(0f, myTank.force));
+            myTank.Force += Input.GetAxis("Vertical");
+            myTank.Force = System.Math.Min(1000f, System.Math.Max(0f, myTank.Force));
         }
 
         if (Input.GetButtonDown("Fire1"))
