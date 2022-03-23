@@ -19,6 +19,7 @@ my own re-interpretation of the mother of all games
   * [ ] straight shooter
   * [ ] parabola shooter
 * [ ] screen borders
+* [ ] use talk files to say something before shooting/while dying
 * [ ] use destructible terrain from <https://github.com/Ideefixze/DTerrain>
 * [ ] Unsupported terrain should/might drop
 * [ ] More weapons!   *More!*   ***MORE!***
