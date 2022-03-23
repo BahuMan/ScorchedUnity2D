@@ -7678,7 +7678,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 15.909973, y: 176}
+  m_AnchoredPosition: {x: 15.909912, y: 176}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &216185183
@@ -7772,7 +7772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Chattext: {fileID: 789025144}
-  offset: {x: 0, y: 5, z: 0}
+  offset: {x: 10, y: 20, z: 0}
   thiscam: {fileID: 519420031}
 --- !u!1 &216400040
 GameObject:
@@ -67108,7 +67108,7 @@ AreaEffector2D:
     m_Bits: 4294967295
   m_UseGlobalAngle: 0
   m_ForceAngle: 0
-  m_ForceMagnitude: 10
+  m_ForceMagnitude: 100
   m_ForceVariation: 0
   m_ForceTarget: 0
   m_Drag: 0
