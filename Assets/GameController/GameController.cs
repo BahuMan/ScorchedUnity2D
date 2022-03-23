@@ -5,11 +5,14 @@ using SimpleBehaviour;
 public class GameController : MonoBehaviour
 {
 
+    public static GameController _instance;
+
     private Stack<INode> ThingsToDo;
 
     // Start is called before the first frame update
     public void Start()
     {
+        _instance = this;
         ThingsToDo = new Stack<INode>(10);
         ThingsToDo.Push(new TweeBeurtenTodo(FindObjectsOfType<TankControl>()));
     }
@@ -17,8 +20,13 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+
         //only the top of the todo stack gets to do something this frame:
-        ThingsToDo.Peek().Tick();
+        TreeStatusEnum result = ThingsToDo.Peek().Tick();
+
+        //if todo finished (either way), we remove it from the top
+        //WARNING: this will pop the wrong todo if the previous todo finished AND put something else on the stack
+        //if (result != TreeStatusEnum.RUNNING) ThingsToDo.Pop();
     }
 
     //this todo will be executed until done, before all other todos:
@@ -35,7 +43,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            throw new UnityException("ScorchedUnity: illegal request to stop doing " + todo.ToString() + " while actually doing " + ThingsToDo.Peek().ToString());
+            Debug.LogError("ScorchedUnity: illegal request to stop doing " + todo.ToString() + " while actually doing " + ThingsToDo.Peek().ToString());
         }
     }
 }

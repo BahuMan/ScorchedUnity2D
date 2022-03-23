@@ -5,7 +5,7 @@ public class HumanInteraction : MonoBehaviour, SimpleBehaviour.INode
 {
 
     private TankControl myTank;
-    private void Start()
+    private void Awake()
     {
         myTank = GetComponent<TankControl>();
         myTank.SetInteraction(this);
@@ -26,7 +26,8 @@ public class HumanInteraction : MonoBehaviour, SimpleBehaviour.INode
 
         if (Input.GetButtonDown("Fire1"))
         {
-            myTank.Fire();
+            GameController._instance.RemoveThingToDo(this);
+            GameController._instance.addThingToDo(new TalkAndFire(myTank));
             return TreeStatusEnum.SUCCESS;
         }
         else
@@ -35,5 +36,4 @@ public class HumanInteraction : MonoBehaviour, SimpleBehaviour.INode
         }
 
     }
-
 }

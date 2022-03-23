@@ -14,7 +14,7 @@ public class AITotallyRandom : MonoBehaviour, SimpleBehaviour.INode
     private bool newTurn = true;
     private float turnStartTime = 0f;
 
-    private void Start()
+    private void Awake()
     {
         myTank = GetComponent<TankControl>();
         myTank.SetInteraction(this);
@@ -30,7 +30,8 @@ public class AITotallyRandom : MonoBehaviour, SimpleBehaviour.INode
 
         if (Time.time > (turnStartTime + delaySeconds))
         {
-            myTank.Fire();
+            GameController._instance.RemoveThingToDo(this);
+            GameController._instance.addThingToDo(new TalkAndFire(myTank));
             newTurn = true;
             return TreeStatusEnum.SUCCESS;
         }

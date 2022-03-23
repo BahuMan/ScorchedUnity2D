@@ -16,6 +16,8 @@ public class TankControl : MonoBehaviour
         projectile.transform.position = Muzzle.position;
         projectile.transform.rotation = Muzzle.rotation;
         projectile.velocity = Muzzle.right * force;
+
+        GameController._instance.addThingToDo(new WaitForDestruction(projectile.GetComponent<MissileControl>()));
     }
 
     private void Update()
@@ -30,6 +32,7 @@ public class TankControl : MonoBehaviour
 
     public void OnDamageReceived(GameObject src)
     {
+        HP = 0;
         Debug.Log("ow");
     }
 
