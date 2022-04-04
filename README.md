@@ -11,7 +11,7 @@ my own re-interpretation of the mother of all games
 * [x] explosion destroys terrain
 * [ ] destroyed tank animation
 * [x] GUI reflects current tank's status
-  * [ ] not yet HP; 
+  * [x] not yet HP; 
   * [ ] entering values should not accidentally fire gun
 * [x] Computer controlled tanks
   * [x] Completely random
@@ -19,7 +19,8 @@ my own re-interpretation of the mother of all games
   * [ ] straight shooter
   * [ ] parabola shooter
 * [ ] screen borders
-* [ ] use talk files to say something before shooting/while dying
+* [x] use talk files to say something before shooting
+* [ ] use talk files to say something while dying
 * [ ] use destructible terrain from <https://github.com/Ideefixze/DTerrain>
 * [ ] Unsupported terrain should/might drop
 * [ ] More weapons!   *More!*   ***MORE!***
