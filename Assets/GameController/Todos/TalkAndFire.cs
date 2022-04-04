@@ -11,7 +11,7 @@ public class TalkAndFire : INode
     {
         _tank = tank;
         FireAtTime = Time.time + talkdelay;
-        ChatBubbleControl._instance.ShowChatBubble(_tank.transform, tank.gameObject.name);
+        ChatBubbleControl._instance.ShowChatBubble(_tank.transform, ChatBubbleControl.ChatMoment.FIRE);
     }
 
     TreeStatusEnum INode.Tick()

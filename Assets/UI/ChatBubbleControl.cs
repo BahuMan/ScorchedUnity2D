@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,15 +12,37 @@ public class ChatBubbleControl : MonoBehaviour
     private Vector3 offset;
     [SerializeField]
     private Camera thiscam;
+    private string[] FireLines;
+    private string[] LastWords;
+    public enum ChatMoment { FIRE, DIE }
 
     private void Start()
     {
         _instance = this;
         HideChatBubble();
+        ReadChatFiles();
     }
 
-    public void ShowChatBubble(Transform worldCoordinates, string theText)
+    private void ReadChatFiles()
     {
+        TextAsset FireTextFile = Resources.Load<TextAsset>("fire");
+        if (FireTextFile == null) throw new System.Exception("could not find resource");
+        if (FireTextFile.text == null) throw new System.Exception("Could find, but not read resource");
+        FireLines = FireTextFile.text.Split("\r\n".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);
+    }
+
+    public void ShowChatBubble(Transform worldCoordinates, ChatMoment when)
+    {
+        string theText;
+        if (when == ChatMoment.FIRE)
+        {
+            theText = FireLines[Random.Range(0, FireLines.Length)];
+        }
+        else
+        {
+            theText = worldCoordinates.gameObject.name;
+        }
+
         Vector3 wpos = worldCoordinates.position;
         Debug.Log("Chat " + theText + " at " + wpos);
         gameObject.SetActive(true);
