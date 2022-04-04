@@ -10,6 +10,9 @@ public class MoveBorderToCameraEdge : MonoBehaviour
     [SerializeField] BoxCollider2D TopBorder;
     [SerializeField] BoxCollider2D BottomBorder;
 
+    [SerializeField] PhysicsMaterial2D BounceMaterial;
+    [SerializeField] PhysicsMaterial2D SolidMaterial;
+
     public enum BorderTypeEnum { SOLID, BOUNCE, WRAP }
     [SerializeField]
     BorderTypeEnum borderType;
@@ -26,10 +29,15 @@ public class MoveBorderToCameraEdge : MonoBehaviour
 
     private void MakeBordersBounce()
     {
-        LeftBorder.isTrigger = true;
-        RightBorder.isTrigger = true;
-        TopBorder.isTrigger = true;
-        BottomBorder.isTrigger = true;
+        LeftBorder.isTrigger = false;
+        RightBorder.isTrigger = false;
+        TopBorder.isTrigger = false;
+        BottomBorder.isTrigger = false;
+
+        LeftBorder.sharedMaterial = BounceMaterial;
+        RightBorder.sharedMaterial = BounceMaterial;
+        TopBorder.sharedMaterial = BounceMaterial;
+        BottomBorder.sharedMaterial = BounceMaterial;
 
         LeftBorder.GetComponent<SpriteRenderer>().enabled = true;
         RightBorder.GetComponent<SpriteRenderer>().enabled = true;
@@ -67,6 +75,11 @@ public class MoveBorderToCameraEdge : MonoBehaviour
         TopBorder.isTrigger = false;
         BottomBorder.isTrigger = false;
 
+        LeftBorder.sharedMaterial = SolidMaterial;
+        RightBorder.sharedMaterial = SolidMaterial;
+        TopBorder.sharedMaterial = SolidMaterial;
+        BottomBorder.sharedMaterial = SolidMaterial;
+
         LeftBorder.GetComponent<SpriteRenderer>().enabled = true;
         RightBorder.GetComponent<SpriteRenderer>().enabled = true;
         TopBorder.GetComponent<SpriteRenderer>().enabled = true;
@@ -94,10 +107,10 @@ public class MoveBorderToCameraEdge : MonoBehaviour
     {
         Debug.Log("moving borders...");
         LeftBorder.transform.position = new Vector3(totalview.x - totalview.width - .4f, totalview.y);
-        LeftBorder.transform.localScale = new Vector3(1f, 2f * totalview.height, 1f);
+        LeftBorder.transform.localScale = new Vector3(1f, 20f * totalview.height, 1f);
 
         RightBorder.transform.position = new Vector3(totalview.x + totalview.width + .4f, totalview.y);
-        RightBorder.transform.localScale = new Vector3(1f, 2f * totalview.height, 1f);
+        RightBorder.transform.localScale = new Vector3(1f, 20f * totalview.height, 1f);
 
         TopBorder.transform.position = new Vector3(totalview.x, totalview.y + totalview.height + .4f);
         TopBorder.transform.localScale = new Vector3(2f * totalview.width, 1f, 1f);
@@ -105,6 +118,11 @@ public class MoveBorderToCameraEdge : MonoBehaviour
         BottomBorder.transform.position = new Vector3(totalview.x, totalview.y - totalview.height - .4f);
         BottomBorder.transform.localScale = new Vector3(2f * totalview.width, 1f, 1f);
 
+    }
+
+    public BorderTypeEnum GetBorderType()
+    {
+        return borderType;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -129,18 +147,6 @@ public class MoveBorderToCameraEdge : MonoBehaviour
                     Vector3 velocity = missile.GetComponent<Rigidbody2D>().velocity;
                     velocity.y = -velocity.y;
                     missile.GetComponent<Rigidbody2D>().velocity = velocity;
-                }
-            }
-        }
-        else if (this.borderType == BorderTypeEnum.WRAP)
-        {
-            MissileControl missile = collision.GetComponent<MissileControl>();
-            if (missile != null)
-            {
-                if (collision == LeftBorder || collision == RightBorder)
-                {
-                    Debug.Log("wrapping horizontally");
-                    missile.GetComponent<Rigidbody2D>().MovePosition(missile.transform.position * -Vector2.right);
                 }
             }
         }

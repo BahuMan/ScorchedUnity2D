@@ -10,6 +10,13 @@ public class MissileControl : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Missile hit " + collision.transform.gameObject.name);
+        MoveBorderToCameraEdge border = collision.gameObject.GetComponent<MoveBorderToCameraEdge>();
+        if (border != null && border.GetBorderType() == MoveBorderToCameraEdge.BorderTypeEnum.BOUNCE)
+        {
+            Debug.Log("Missile BOINK");
+            return; //allow bounce; no explosion
+        }
+
         ExplosionControl fireball = Instantiate<ExplosionControl>(explosion, this.transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
