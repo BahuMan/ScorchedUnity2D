@@ -26,9 +26,14 @@ public class ChatBubbleControl : MonoBehaviour
     private void ReadChatFiles()
     {
         TextAsset FireTextFile = Resources.Load<TextAsset>("fire");
-        if (FireTextFile == null) throw new System.Exception("could not find resource");
-        if (FireTextFile.text == null) throw new System.Exception("Could find, but not read resource");
+        if (FireTextFile == null) throw new System.Exception("could not find resource 'fire'");
+        if (FireTextFile.text == null) throw new System.Exception("Could find, but not read resource 'fire'");
         FireLines = FireTextFile.text.Split("\r\n".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);
+
+        TextAsset LastWordsTextfile = Resources.Load<TextAsset>("lastwords");
+        if (LastWordsTextfile == null) throw new System.Exception("could not find resource 'lastwords'");
+        if (LastWordsTextfile.text == null) throw new System.Exception("could find, but not read resource 'lastwords;");
+        LastWords = LastWordsTextfile.text.Split("\r\n".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);
     }
 
     public void ShowChatBubble(Transform worldCoordinates, ChatMoment when)
