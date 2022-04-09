@@ -18,7 +18,10 @@ my own re-interpretation of the mother of all games
   * [ ] Newton approximation
   * [ ] straight shooter
   * [ ] parabola shooter
-* [ ] screen borders
+* [x] screen borders
+  * [x] solid
+  * [x] bounce
+  * [x] wrap
 * [x] use talk files to say something before shooting
 * [ ] use talk files to say something while dying
 * [ ] use destructible terrain from <https://github.com/Ideefixze/DTerrain>
