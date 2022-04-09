@@ -13,17 +13,24 @@ public class ESCMenuHotkey : MonoBehaviour, INode
         if (Input.GetKeyDown(KeyCode.Escape) && MenuHidden)
         {
             Debug.Log("Menu activated");
-            MenuHidden = false;
+            panel.SetActive(true);
             GameController._instance.addThingToDo(this);
+        }
+
+        //the "MenuHidden" flag is set with 1 frame delay so
+        //ESC doesn't immediately re-activate the menu
+        if (MenuHidden == false && panel.activeSelf == false)
+        {
+            MenuHidden = true;
         }
     }
     TreeStatusEnum INode.Tick()
     {
         //in the first frame, don't listen to ESC key or we will quit menu
         //before it even activates :)
-        if (MenuHidden == false && panel.activeSelf == false)
+        if (MenuHidden == true && panel.activeSelf == true)
         {
-            panel.SetActive(true);
+            MenuHidden = false;
             previousTimeScale = Time.timeScale;
             Time.timeScale = 0f;
             return TreeStatusEnum.RUNNING; //next frame, we'll listen to the UI
@@ -38,7 +45,6 @@ public class ESCMenuHotkey : MonoBehaviour, INode
             || Input.GetKeyDown(KeyCode.R)
             || panel.activeSelf == false)
         {
-            MenuHidden = true;
             Time.timeScale = previousTimeScale;
             panel.SetActive(false);
             GameController._instance.RemoveThingToDo(this);
