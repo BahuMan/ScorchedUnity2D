@@ -1,6 +1,8 @@
 # ScorchedUnity2D
 my own re-interpretation of the mother of all games
 
+![screenshot](info/Screenshot_menu.jpg?raw=true)
+
 ## Current status
 
 * [x] naive, big blocks of destructible terrain
