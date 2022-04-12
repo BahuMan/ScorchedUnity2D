@@ -5,6 +5,7 @@ my own re-interpretation of the mother of all games
 
 ## Current status
 
+* [ ] BUG: tanks that were killed still get to shoot for the current turn
 * [x] naive, big blocks of destructible terrain
 * [X] wind
 * [x] user controls tank

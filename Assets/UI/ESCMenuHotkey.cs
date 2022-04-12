@@ -72,6 +72,7 @@ public class ESCMenuHotkey : MonoBehaviour, INode
 
     public void ESC_Quit_Clicked()
     {
+        Debug.Log("Bye");
         UnityEngine.Application.Quit();
     }
 }

@@ -1,18 +1,20 @@
 using SimpleBehaviour;
 using UnityEngine;
 
-public class HumanInteraction : MonoBehaviour, SimpleBehaviour.INode
+public class LocalHumanPlayer : MonoBehaviour, SimpleBehaviour.INode
 {
 
     private TankControl myTank;
-    private void Awake()
+
+    void Start()
     {
-        myTank = GetComponent<TankControl>();
-        myTank.SetInteraction(this);
+        GetComponent<GenericPlayer>().SetInteraction(this);
     }
 
     TreeStatusEnum INode.Tick()
     {
+        if (myTank == null) myTank = GetComponent<GenericPlayer>().GetTank();
+
         if (Mathf.Abs(Input.GetAxis("Horizontal")) > .1f)
         {
             myTank.Angle -= Input.GetAxis("Horizontal");
@@ -36,4 +38,5 @@ public class HumanInteraction : MonoBehaviour, SimpleBehaviour.INode
         }
 
     }
+
 }

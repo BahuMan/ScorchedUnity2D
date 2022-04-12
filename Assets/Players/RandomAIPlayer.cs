@@ -1,7 +1,8 @@
-using SimpleBehaviour;
+﻿using SimpleBehaviour;
 using UnityEngine;
 
-public class AITotallyRandom : MonoBehaviour, SimpleBehaviour.INode
+
+public class RandomAIPlayer : MonoBehaviour, SimpleBehaviour.INode
 {
     private TankControl myTank;
     [SerializeField]
@@ -14,14 +15,15 @@ public class AITotallyRandom : MonoBehaviour, SimpleBehaviour.INode
     private bool newTurn = true;
     private float turnStartTime = 0f;
 
-    private void Awake()
+    void Start()
     {
-        myTank = GetComponent<TankControl>();
-        myTank.SetInteraction(this);
+        GetComponent<GenericPlayer>().SetInteraction(this);
     }
+
 
     TreeStatusEnum INode.Tick()
     {
+        if (myTank == null) myTank = GetComponent<GenericPlayer>().GetTank();
         if (newTurn == true) ChooseNewValues();
 
         float halfway = (Time.time - turnStartTime) / delaySeconds;
@@ -32,7 +34,7 @@ public class AITotallyRandom : MonoBehaviour, SimpleBehaviour.INode
         {
             GameController._instance.RemoveThingToDo(this);
             GameController._instance.addThingToDo(new TalkAndFire(myTank));
-            newTurn = true;
+            newTurn = true; //next time we enter tick(), a new turn will have started
             return TreeStatusEnum.SUCCESS;
         }
 

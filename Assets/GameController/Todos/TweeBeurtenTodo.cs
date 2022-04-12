@@ -8,13 +8,18 @@ public class TweeBeurtenTodo : INode
 
     private List<TankControl> TankBeurten;
 
-    public TweeBeurtenTodo(TankControl[] tanks)
+    public TweeBeurtenTodo()
     {
-        TankBeurten = new List<TankControl>(tanks);
+        //construction time is not a good initialization moment,
+        //because this class is pushed onto stack BEFORE actual tanks are created
     }
 
     public TreeStatusEnum Tick()
     {
+        //should only happen the first time
+        if (TankBeurten == null) TankBeurten = new List<TankControl>(GameObject.FindObjectsOfType<TankControl>());
+
+
         int nrAlive = 0;
         foreach (TankControl tank in TankBeurten)
         {

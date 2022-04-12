@@ -14,7 +14,8 @@ public class GameController : MonoBehaviour
     {
         _instance = this;
         ThingsToDo = new Stack<INode>(10);
-        ThingsToDo.Push(new TweeBeurtenTodo(FindObjectsOfType<TankControl>()));
+        ThingsToDo.Push(new TweeBeurtenTodo());
+        ThingsToDo.Push(GetComponent<CreateTanksForPlayers>());
     }
 
     // Update is called once per frame
