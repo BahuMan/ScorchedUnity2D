@@ -3,6 +3,7 @@ using SimpleBehaviour;
 
 public class CreateTanksForPlayers : MonoBehaviour, INode
 {
+    [SerializeField] Transform TopBorder;
     [SerializeField] LeftRightBorderControl LeftBorder;
     [SerializeField] LeftRightBorderControl RightBorder;
 
@@ -18,8 +19,15 @@ public class CreateTanksForPlayers : MonoBehaviour, INode
         for (int i = 0; i < players.Length; i++)
         {
             TankControl newTank = GameObject.Instantiate<TankControl>(players[i].getPreferredTankPrefab());
-            newTank.transform.position = new Vector3(Mathf.Lerp(minX, maxX, (i+1f) / (players.Length + 1f)), 20f, 0f);
             newTank.HP = 1000;
+
+            //put tank in player position, at top of screen
+            Vector2 toppos = new Vector3(Mathf.Lerp(minX, maxX, (i + 1f) / (players.Length + 1f)), TopBorder.position.y, 0f);
+            //now lower tank to terrain height:
+            RaycastHit2D hit = Physics2D.BoxCast(toppos, Vector2.one, 0f, Vector2.down);
+            Debug.Log("tank landed on " + hit.collider.gameObject.name);
+            if (hit.collider.GetComponent<TerrainTile>() == null) Debug.Break();
+            newTank.transform.position = new Vector3(toppos.x, hit.point.y, 0f);
             players[i].SetTank(newTank);
 
         }

@@ -19,7 +19,6 @@ public class TalkAndFire : INode
         //...wait...
         if (Time.time < FireAtTime) return TreeStatusEnum.RUNNING;
 
-        Debug.Log("after talking, now firing");
         ChatBubbleControl._instance.HideChatBubble();
         GameController._instance.RemoveThingToDo(this);
         _tank.Fire();

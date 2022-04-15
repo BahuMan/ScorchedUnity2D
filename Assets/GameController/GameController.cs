@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
 {
 
     public static GameController _instance;
+    public TerrainGenerator _terrain;
 
     private Stack<INode> ThingsToDo;
 
@@ -16,6 +17,7 @@ public class GameController : MonoBehaviour
         ThingsToDo = new Stack<INode>(10);
         ThingsToDo.Push(new TweeBeurtenTodo());
         ThingsToDo.Push(GetComponent<CreateTanksForPlayers>());
+        ThingsToDo.Push(_terrain);
     }
 
     // Update is called once per frame

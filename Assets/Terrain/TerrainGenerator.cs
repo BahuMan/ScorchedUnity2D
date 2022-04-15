@@ -1,6 +1,7 @@
 using UnityEngine;
+using SimpleBehaviour;
 
-public class TerrainGenerator : MonoBehaviour
+public class TerrainGenerator : MonoBehaviour, INode
 {
 
     public GameObject TilePrefab;
@@ -39,5 +40,12 @@ public class TerrainGenerator : MonoBehaviour
     void Update()
     {
         
+    }
+
+    TreeStatusEnum INode.Tick()
+    {
+        this.GenerateTerrain();
+        GameController._instance.RemoveThingToDo(this);
+        return TreeStatusEnum.SUCCESS;
     }
 }
