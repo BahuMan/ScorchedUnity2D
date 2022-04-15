@@ -24,7 +24,8 @@ public class LeftRightBorderControl : MonoBehaviour
         {
             Debug.Log("wrapping horizontally");
             Vector2 oldpos = missile.transform.position;
-            missile.GetComponent<Rigidbody2D>().MovePosition(new Vector2(-oldpos.x + Mathf.Sign(oldpos.x) * _thisBox.size.x, oldpos.y));
+            //missile.GetComponent<Rigidbody2D>().MovePosition(new Vector2(-oldpos.x + Mathf.Sign(oldpos.x) * _thisBox.size.x, oldpos.y));
+            missile.transform.position = new Vector2(-oldpos.x + Mathf.Sign(oldpos.x) * _thisBox.size.x / 2f, oldpos.y);
         }
     }
 }
