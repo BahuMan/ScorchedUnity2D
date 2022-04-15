@@ -7,6 +7,7 @@ public class GenericPlayer : MonoBehaviour
     [SerializeField]
     private TankControl preferredTankPrefab;
     public TankControl getPreferredTankPrefab() { return preferredTankPrefab; }
+    public void SetPreferredTankPrefab(TankControl t) { preferredTankPrefab = t; }
 
     private TankControl instantiatedTank;
     public TankControl GetTank() { return instantiatedTank; }

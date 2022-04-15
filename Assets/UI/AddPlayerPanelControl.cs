@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class AddPlayerPanelControl : MonoBehaviour
 {
@@ -16,20 +17,34 @@ public class AddPlayerPanelControl : MonoBehaviour
 
     [SerializeField] Button AddPlayerButton;
 
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] TankControl tankPrefab;
+    private string[] botNames;
+    private int nextBotName;
+
+    private void Start()
+    {
+        TextAsset botnamesTA = Resources.Load<TextAsset>("BotPlayerNames");
+        botNames = botnamesTA.text.Split("\r\n".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);
+        nextBotName = 0;
+    }
+
+    private void OnEnable()
     {
         PlayerNameInput.onEndEdit.AddListener(PlayerName_OnEndEdit);
+    }
+
+    private void OnDisable()
+    {
+        PlayerNameInput.onEndEdit.RemoveListener(PlayerName_OnEndEdit);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //disable any hotkeys if user is inputting a name:
         if (EventSystem.current.currentSelectedGameObject == PlayerNameInput.gameObject) return;
-        if (PlayerNameInput.isFocused) return;
 
-        //if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
-        //{
+        //otherwise, these keys form a hotkey:
         if (Input.GetKeyDown(KeyCode.N) && HumanPlayerPanel.activeSelf)
         {
             PlayerNameInput.Select();
@@ -37,6 +52,10 @@ public class AddPlayerPanelControl : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.M) && BotPlayerPanel.activeSelf)
         {
             ToggleMoron.isOn = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.N) && HumanPlayerPanel.activeSelf)
+        {
+            ExecuteEvents.Execute(AddPlayerButton.gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
         }
         else if (Input.GetKeyDown(KeyCode.N) && BotPlayerPanel.activeSelf)
         {
@@ -46,17 +65,11 @@ public class AddPlayerPanelControl : MonoBehaviour
         {
             ExecuteEvents.Execute(AddPlayerButton.gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
         }
-        //}
     }
 
     public void PlayerName_OnEndEdit(string newname)
     {
-        Debug.Log("Player name changed to " + newname);
         AddPlayerButton.Select();
-    }
-    public void BotToggle_OnValueChanged(string bottype)
-    {
-        Debug.Log("toggle selected: " + bottype);
     }
 
     public void HumanPCSlider_OnValueChanged()
@@ -74,20 +87,32 @@ public class AddPlayerPanelControl : MonoBehaviour
     }
     public void DoneButton_OnClick()
     {
+        GameObject newp;
         if (HumanPlayerPanel.activeSelf)
         {
-            Debug.Log("Adding human '" + PlayerNameInput.text + "'");
+            newp = new GameObject("Human Player " + PlayerNameInput.text);
+            newp.AddComponent<GenericPlayer>().SetPreferredTankPrefab(tankPrefab);
+            newp.AddComponent<LocalHumanPlayer>();
         }
         else
         {
             if (ToggleMoron.isOn)
             {
-                Debug.Log("Adding Moron Computer");
+                newp = new GameObject("Bot " + botNames[nextBotName] + " (Moron)");
+                newp.AddComponent<GenericPlayer>().SetPreferredTankPrefab(tankPrefab);
+                newp.AddComponent<RandomAIPlayer>();
+                nextBotName++;
             }
-            else if (ToggleNotImplemented.isOn)
+            else
             {
+                newp = null;
                 Debug.Log("That's not going to work ...");
             }
         }
+        newp.transform.position = Vector3.zero;
+        DontDestroyOnLoad(newp);
+
+        if (nextBotName > 1) SceneManager.LoadScene("SampleScene");
     }
+
 }
