@@ -115,9 +115,6 @@ public class AddPlayerPanelControl : MonoBehaviour
             }
         }
         player.SetPreferredTankPrefab(tankPrefab);
-        WeaponInventory wi = new WeaponInventory();
-        wi.ChangeStockForWeapon(WeaponEnum.MONEY, Preferences._instance.StartMoney);
-        player.SetInventory(wi);
         newp.transform.position = Vector3.zero;
         DontDestroyOnLoad(newp);
         currentPlayerNumber++;

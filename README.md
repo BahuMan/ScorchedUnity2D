@@ -1,15 +1,23 @@
 # ScorchedUnity2D
 my own re-interpretation of the mother of all games
 
+![screenshot](info/Screenshot-mainmenu.jpg?raw=true)
+![screenshot](info/Screenshot-addplayer.jpg?raw=true)
+![screenshot](info/Screenshot-2022-04-18.jpg?raw=true)
 ![screenshot](info/Screenshot_menu.jpg?raw=true)
 
 ## Current status
 
-* [ ] BUG: tanks that were killed still get to shoot for the current turn
+* [ ] BUG: last remaining tank still needs to shoot in order to win
+* [x] at end of round, move to next round (new level, new terrain)
+* [x] main menu
+  * [x] sets nr of players
+  * [ ] sets nr of rounds
+  * [ ] other preferences, like border style, starting money, ...
+* [x] Add human/AI players and provide name for human players
 * [x] naive, big blocks of destructible terrain
 * [X] wind
 * [x] user controls tank
-* [x] todo-stack
 * [x] baby missile
 * [x] explosion destroys terrain
 * [ ] destroyed tank animation

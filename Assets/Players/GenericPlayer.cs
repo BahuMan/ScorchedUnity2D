@@ -11,6 +11,12 @@ public class GenericPlayer : MonoBehaviour
 
     public string PlayerName;
 
+    private void Start()
+    {
+        myInventory = new WeaponInventory();
+        myInventory.ChangeStockForWeapon(WeaponEnum.MONEY, Preferences._instance.StartMoney);
+
+    }
     private TankControl instantiatedTank;
     public TankControl GetTank() { return instantiatedTank; }
     public void SetTank(TankControl t)
@@ -22,11 +28,6 @@ public class GenericPlayer : MonoBehaviour
     }
 
     private WeaponInventory myInventory;
-    public void SetInventory(WeaponInventory inventory)
-    {
-        if (myInventory != null) Debug.LogError("Trying to set inventory twice for " + gameObject.name);
-        this.myInventory = inventory;
-    }
 
     public WeaponInventory GetInventory()
     {
