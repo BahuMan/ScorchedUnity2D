@@ -9,6 +9,8 @@ public class GenericPlayer : MonoBehaviour
     public TankControl getPreferredTankPrefab() { return preferredTankPrefab; }
     public void SetPreferredTankPrefab(TankControl t) { preferredTankPrefab = t; }
 
+    public string PlayerName;
+
     private TankControl instantiatedTank;
     public TankControl GetTank() { return instantiatedTank; }
     public void SetTank(TankControl t)
@@ -16,7 +18,7 @@ public class GenericPlayer : MonoBehaviour
         instantiatedTank = t;
         t.gameObject.name = "Tank " + this.gameObject.name;
         if (interaction == null) Debug.LogError("tank was set before interaction for " + gameObject.name);
-        else t.SetInteraction(interaction);
+        else t.SetPlayer(this, interaction);
     }
 
     private WeaponInventory myInventory;

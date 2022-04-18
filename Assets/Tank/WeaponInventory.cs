@@ -86,4 +86,15 @@ public class WeaponInventory
     {
         return stock.Keys.GetEnumerator();
     }
+
+    public int ChangeStockForWeapon(WeaponEnum w, int delta)
+    {
+        //baby missiles are infinite; never change the number in stock;
+        if (w == WeaponEnum.BABY_MISSILE) return 666;
+
+        if (!stock.ContainsKey(w)) stock[w] = new WeaponStock { nrInStock = delta, weapon = w };
+        else stock[w].nrInStock += delta;
+
+        return stock[w].nrInStock;
+    }
 }

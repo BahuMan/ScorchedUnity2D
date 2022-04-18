@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour
     {
         _instance = this;
         ThingsToDo = new Stack<INode>(10);
-        ThingsToDo.Push(new TweeBeurtenTodo());
+        ThingsToDo.Push(new RoundRobinTurns(FindObjectsOfType<GenericPlayer>()));
         ThingsToDo.Push(GetComponent<CreateTanksForPlayers>());
         ThingsToDo.Push(_terrain);
     }

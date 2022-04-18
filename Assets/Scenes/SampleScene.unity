@@ -1179,7 +1179,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0a7e67a1c079c41a6f2ccca541ac27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  choice: 6
   schemes:
   - background: {fileID: 21300000, guid: 584bf1810fa529344bc1f5aed8974666, type: 3}
     terrainColor: {r: 0.314, g: 0.24343821, b: 0, a: 1}
@@ -2517,6 +2516,7 @@ MonoBehaviour:
   _NrPlayers: 2
   _NrRounds: 2
   _BorderType: 2
+  _StartMoney: 10000
 --- !u!4 &1015055244
 Transform:
   m_ObjectHideFlags: 0
@@ -2994,7 +2994,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1250629435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3021,6 +3021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   preferredTankPrefab: {fileID: 2995025732035133146, guid: 936cf2fa90013844db63863192c2548b, type: 3}
+  PlayerName: 
 --- !u!4 &1250629437
 Transform:
   m_ObjectHideFlags: 0
@@ -4434,7 +4435,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2096776377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4460,6 +4461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   preferredTankPrefab: {fileID: 2995025732035133146, guid: 936cf2fa90013844db63863192c2548b, type: 3}
+  PlayerName: 
 --- !u!4 &2096776379
 Transform:
   m_ObjectHideFlags: 0

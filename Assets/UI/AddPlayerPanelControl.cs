@@ -91,10 +91,11 @@ public class AddPlayerPanelControl : MonoBehaviour
     public void DoneButton_OnClick()
     {
         GameObject newp;
+        GenericPlayer player;
         if (HumanPlayerPanel.activeSelf)
         {
             newp = new GameObject("Human Player " + PlayerNameInput.text);
-            newp.AddComponent<GenericPlayer>().SetPreferredTankPrefab(tankPrefab);
+            player = newp.AddComponent<GenericPlayer>();
             newp.AddComponent<LocalHumanPlayer>();
         }
         else
@@ -102,16 +103,21 @@ public class AddPlayerPanelControl : MonoBehaviour
             if (ToggleMoron.isOn)
             {
                 newp = new GameObject("Bot " + botNames[nextBotName] + " (Moron)");
-                newp.AddComponent<GenericPlayer>().SetPreferredTankPrefab(tankPrefab);
+                player = newp.AddComponent<GenericPlayer>();
                 newp.AddComponent<RandomAIPlayer>();
                 nextBotName++;
             }
             else
             {
                 newp = null;
+                player = null;
                 Debug.Log("That's not going to work ...");
             }
         }
+        player.SetPreferredTankPrefab(tankPrefab);
+        WeaponInventory wi = new WeaponInventory();
+        wi.ChangeStockForWeapon(WeaponEnum.MONEY, Preferences._instance.StartMoney);
+        player.SetInventory(wi);
         newp.transform.position = Vector3.zero;
         DontDestroyOnLoad(newp);
         currentPlayerNumber++;

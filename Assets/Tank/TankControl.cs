@@ -3,6 +3,7 @@ using UnityEngine.Events;
 
 public class TankControl : MonoBehaviour
 {
+    private GenericPlayer Player;
     public Rigidbody2D shell;
     public Transform Gun;
     public Transform Muzzle;
@@ -55,12 +56,19 @@ public class TankControl : MonoBehaviour
         set {
             force = value;
             OnForceChanged.Invoke(force);
-        } }
+        }
+    }
 
-    public void SetInteraction(SimpleBehaviour.INode interaction)
+    public void SetPlayer(GenericPlayer p, SimpleBehaviour.INode interaction)
     {
-        if (OnMyTurn != null) throw new UnityException("ScorchedUnity2D: can't set two interactions for one tank " + this.gameObject.name);
+        if (OnMyTurn != null || Player != null) throw new UnityException("TankControl is being initialized second time by " + p.gameObject.name);
+        this.Player = p;
         OnMyTurn = interaction;
+    }
+
+    public GenericPlayer GetPlayer()
+    {
+        return Player;
     }
 
     public SimpleBehaviour.INode GetInteraction()

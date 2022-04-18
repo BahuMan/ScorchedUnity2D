@@ -34,6 +34,7 @@ public class Preferences : MonoBehaviour
     [SerializeField] private int _NrPlayers;
     [SerializeField] private int _NrRounds;
     [SerializeField] private MoveBorderToCameraEdge.BorderTypeEnum _BorderType;
+    [SerializeField] private int _StartMoney = 10000;
 
     public delegate void PreferencesChangedDelegate(Preferences p);
     public PreferencesChangedDelegate OnPreferencesChanged;
@@ -41,4 +42,5 @@ public class Preferences : MonoBehaviour
     public int NrPlayers { get => _NrPlayers; set { _NrPlayers = value; OnPreferencesChanged?.Invoke(this); } }
     public int NrRounds { get => _NrRounds; set{ _NrRounds = value; OnPreferencesChanged?.Invoke(this); } }
     public MoveBorderToCameraEdge.BorderTypeEnum BorderType { get => _BorderType; set { _BorderType = value; OnPreferencesChanged?.Invoke(this); } }
+    public int StartMoney { get => _StartMoney; set => _StartMoney = value; }
 }
