@@ -13,11 +13,32 @@ public class MoveBorderToCameraEdge : MonoBehaviour
     [SerializeField] PhysicsMaterial2D BounceMaterial;
     [SerializeField] PhysicsMaterial2D SolidMaterial;
 
-    public enum BorderTypeEnum { SOLID, BOUNCE, WRAP }
+    public enum BorderTypeEnum { RANDOM, SOLID, BOUNCE, WRAP }
     [SerializeField]
     BorderTypeEnum borderType;
 
+    private void Start()
+    {
+        if (Preferences._instance.BorderType == BorderTypeEnum.RANDOM)
+        {
+            switch (UnityEngine.Random.Range(0, 3)) {
+                case 0: this.borderType = BorderTypeEnum.SOLID; break;
+                case 1: this.borderType = BorderTypeEnum.WRAP; break;
+                case 2: this.borderType = BorderTypeEnum.BOUNCE; break;
+            }
+        }
+        else
+        {
+            this.borderType = Preferences._instance.BorderType;
+        }
+        SetBorderType();
+    }
     private void OnValidate()
+    {
+        SetBorderType();
+    }
+
+    private void SetBorderType()
     {
         switch (borderType)
         {

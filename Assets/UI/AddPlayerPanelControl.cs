@@ -20,12 +20,15 @@ public class AddPlayerPanelControl : MonoBehaviour
     [SerializeField] TankControl tankPrefab;
     private string[] botNames;
     private int nextBotName;
+    private int currentPlayerNumber;
 
     private void Start()
     {
         TextAsset botnamesTA = Resources.Load<TextAsset>("BotPlayerNames");
         botNames = botnamesTA.text.Split("\r\n".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);
         nextBotName = 0;
+        currentPlayerNumber = 1;
+        this.PlayerOrderText.text = "Player " + currentPlayerNumber.ToString() + " (of " + Preferences._instance.NrPlayers + ")";
     }
 
     private void OnEnable()
@@ -111,8 +114,17 @@ public class AddPlayerPanelControl : MonoBehaviour
         }
         newp.transform.position = Vector3.zero;
         DontDestroyOnLoad(newp);
+        currentPlayerNumber++;
 
-        if (nextBotName > 1) SceneManager.LoadScene("SampleScene");
+        //start play if we've defined all players:
+        if (currentPlayerNumber > Preferences._instance.NrPlayers)
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
+        else
+        {
+            this.PlayerOrderText.text = "Player " + currentPlayerNumber.ToString() + " (of " + Preferences._instance.NrPlayers + ")";
+        }
     }
 
 }
