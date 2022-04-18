@@ -11,7 +11,6 @@ public class RandomBackgroundControl : MonoBehaviour
         public Color terrainColor;
     }
 
-    public int choice;
     [SerializeField] ColorScheme[] schemes;
     private SpriteRenderer _sprite;
     public Color terrainColor { get; private set; }
@@ -20,7 +19,7 @@ public class RandomBackgroundControl : MonoBehaviour
     void OnEnable()
     {
         _sprite = GetComponent<SpriteRenderer>();
-        //int choice = Random.Range(0, schemes.Length);
+        int choice = Random.Range(0, schemes.Length);
         _sprite.sprite = schemes[choice].background;
         terrainColor = schemes[choice].terrainColor;
     }
