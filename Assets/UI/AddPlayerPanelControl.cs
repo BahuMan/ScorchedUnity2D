@@ -96,6 +96,7 @@ public class AddPlayerPanelControl : MonoBehaviour
         {
             newp = new GameObject("Human Player " + PlayerNameInput.text);
             player = newp.AddComponent<GenericPlayer>();
+            player.PlayerName = PlayerNameInput.text;
             newp.AddComponent<LocalHumanPlayer>();
         }
         else
@@ -104,6 +105,7 @@ public class AddPlayerPanelControl : MonoBehaviour
             {
                 newp = new GameObject("Bot " + botNames[nextBotName] + " (Moron)");
                 player = newp.AddComponent<GenericPlayer>();
+                player.PlayerName = botNames[nextBotName];
                 newp.AddComponent<RandomAIPlayer>();
                 nextBotName++;
             }

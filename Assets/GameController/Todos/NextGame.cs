@@ -3,10 +3,19 @@ using SimpleBehaviour;
 
 public class NextGame : INode
 {
+    private static int roundsPlayed = 0;
     public TreeStatusEnum Tick()
     {
+        roundsPlayed++;
         GameController._instance.RemoveThingToDo(this);
-        SceneManager.LoadScene("SampleScene");
+        if (roundsPlayed < Preferences._instance.NrRounds)
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
         return TreeStatusEnum.SUCCESS;
     }
 }

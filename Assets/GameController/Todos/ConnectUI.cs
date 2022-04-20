@@ -11,7 +11,7 @@ public class ConnectUI : INode
     TreeStatusEnum INode.Tick()
     {
         Debug.Log("Connecting " + currentTank.name + " to UI");
-        CurrentPlayerPanelControl.instance.SetCurrentPlayer(currentTank);
+        CurrentPlayerPanelControl.instance.SetCurrentTank(currentTank);
         GameController._instance.RemoveThingToDo(this);
         return TreeStatusEnum.SUCCESS;
     }

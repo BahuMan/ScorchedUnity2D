@@ -15,37 +15,37 @@ public class CurrentPlayerPanelControl : MonoBehaviour
         instance = this;
     }
 
-    TankControl currentPlayer;
+    TankControl currentTank;
 
-    public void SetCurrentPlayer(TankControl tank)
+    public void SetCurrentTank(TankControl tank)
     {
-        if (currentPlayer != null)
+        if (currentTank != null)
         {
-            currentPlayer.OnForceChanged.RemoveListener(tank_OnForceChanged);
-            currentPlayer.OnAngleChanged.RemoveListener(tank_OnAngleChanged);
+            currentTank.OnForceChanged.RemoveListener(tank_OnForceChanged);
+            currentTank.OnAngleChanged.RemoveListener(tank_OnAngleChanged);
         }
 
-        currentPlayer = tank;
-        PlayerNameText.text = currentPlayer.gameObject.name;
-        AngleInput.text = currentPlayer.Angle.ToString();
-        ForceInput.text = currentPlayer.Force.ToString();
-        LifeText.text = currentPlayer.HP.ToString();
+        currentTank = tank;
+        PlayerNameText.text = currentTank.GetPlayer().PlayerName;
+        AngleInput.text = currentTank.Angle.ToString();
+        ForceInput.text = currentTank.Force.ToString();
+        LifeText.text = currentTank.HP.ToString();
 
-        currentPlayer.OnForceChanged.AddListener(tank_OnForceChanged);
-        currentPlayer.OnAngleChanged.AddListener(tank_OnAngleChanged);
+        currentTank.OnForceChanged.AddListener(tank_OnForceChanged);
+        currentTank.OnAngleChanged.AddListener(tank_OnAngleChanged);
     }
 
     public void input_OnAngleChanged()
     {
         OnDisable(); //temporarily disable listeners at tank to avoid event loop
-        currentPlayer.Angle = float.Parse(AngleInput.text);
+        currentTank.Angle = float.Parse(AngleInput.text);
         OnEnable();
     }
 
     public void input_OnForceChanged()
     {
         OnDisable(); //temporarily disable listeners at tank to avoid event loop
-        currentPlayer.Force= float.Parse(ForceInput.text);
+        currentTank.Force= float.Parse(ForceInput.text);
         OnEnable();
     }
 
@@ -61,19 +61,19 @@ public class CurrentPlayerPanelControl : MonoBehaviour
 
     private void OnEnable()
     {
-        if (currentPlayer != null)
+        if (currentTank != null)
         {
-            currentPlayer.OnForceChanged.AddListener(tank_OnForceChanged);
-            currentPlayer.OnAngleChanged.AddListener(tank_OnAngleChanged);
+            currentTank.OnForceChanged.AddListener(tank_OnForceChanged);
+            currentTank.OnAngleChanged.AddListener(tank_OnAngleChanged);
         }
     }
 
     private void OnDisable()
     {
-        if (currentPlayer != null)
+        if (currentTank != null)
         {
-            currentPlayer.OnForceChanged.RemoveListener(tank_OnForceChanged);
-            currentPlayer.OnAngleChanged.RemoveListener(tank_OnAngleChanged);
+            currentTank.OnForceChanged.RemoveListener(tank_OnForceChanged);
+            currentTank.OnAngleChanged.RemoveListener(tank_OnAngleChanged);
         }
     }
 }

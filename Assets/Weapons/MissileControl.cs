@@ -18,6 +18,7 @@ public class MissileControl : MonoBehaviour
         }
 
         ExplosionControl fireball = Instantiate<ExplosionControl>(explosion, this.transform.position, Quaternion.identity);
+        GameController._instance.addThingToDo(new WaitForDestruction(fireball));
         Destroy(this.gameObject);
     }
 
