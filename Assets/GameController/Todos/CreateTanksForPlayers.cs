@@ -19,6 +19,7 @@ public class CreateTanksForPlayers : MonoBehaviour, INode
         for (int i = 0; i < players.Length; i++)
         {
             TankControl newTank = GameObject.Instantiate<TankControl>(players[i].getPreferredTankPrefab());
+            foreach (var sp in newTank.GetComponentsInChildren<SpriteRenderer>()) sp.color = players[i].PlayerColor;
             newTank.HP = 1000;
 
             //put tank in player position, at top of screen

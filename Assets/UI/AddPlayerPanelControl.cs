@@ -18,6 +18,10 @@ public class AddPlayerPanelControl : MonoBehaviour
     [SerializeField] Button AddPlayerButton;
 
     [SerializeField] TankControl tankPrefab;
+
+    [SerializeField] Color[] PlayerColors;
+    private int currentColor = 0;
+
     private string[] botNames;
     private int nextBotName;
     private int currentPlayerNumber;
@@ -96,7 +100,9 @@ public class AddPlayerPanelControl : MonoBehaviour
         {
             newp = new GameObject("Human Player " + PlayerNameInput.text);
             player = newp.AddComponent<GenericPlayer>();
+            player.PlayerType = GenericPlayer.PlayerTypeEnum.HUMAN;
             player.PlayerName = PlayerNameInput.text;
+            player.PlayerColor = this.PlayerColors[currentColor++];
             newp.AddComponent<LocalHumanPlayer>();
         }
         else
@@ -105,7 +111,9 @@ public class AddPlayerPanelControl : MonoBehaviour
             {
                 newp = new GameObject("Bot " + botNames[nextBotName] + " (Moron)");
                 player = newp.AddComponent<GenericPlayer>();
+                player.PlayerType= GenericPlayer.PlayerTypeEnum.MORON;
                 player.PlayerName = botNames[nextBotName];
+                player.PlayerColor = this.PlayerColors[currentColor++];
                 newp.AddComponent<RandomAIPlayer>();
                 nextBotName++;
             }

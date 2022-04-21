@@ -8,7 +8,7 @@ my own re-interpretation of the mother of all games
 
 ## Current status
 
-* [ ] BUG: last remaining tank still needs to shoot in order to win
+* [ ] CURRENTLY working on buy menu between rounds
 * [x] at end of round, move to next round (new level, new terrain)
 * [x] main menu
   * [x] sets nr of players

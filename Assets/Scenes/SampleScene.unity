@@ -3021,7 +3021,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   preferredTankPrefab: {fileID: 2995025732035133146, guid: 936cf2fa90013844db63863192c2548b, type: 3}
+  PlayerType: 1
   PlayerName: TestDummy
+  PlayerColor: {r: 0, g: 0, b: 1, a: 1}
 --- !u!4 &1250629437
 Transform:
   m_ObjectHideFlags: 0
@@ -4461,7 +4463,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   preferredTankPrefab: {fileID: 2995025732035133146, guid: 936cf2fa90013844db63863192c2548b, type: 3}
+  PlayerType: 0
   PlayerName: TestBart
+  PlayerColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!4 &2096776379
 Transform:
   m_ObjectHideFlags: 0

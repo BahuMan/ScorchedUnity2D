@@ -9,7 +9,10 @@ public class GenericPlayer : MonoBehaviour
     public TankControl getPreferredTankPrefab() { return preferredTankPrefab; }
     public void SetPreferredTankPrefab(TankControl t) { preferredTankPrefab = t; }
 
+    public enum PlayerTypeEnum { HUMAN, MORON }
+    public PlayerTypeEnum PlayerType;
     public string PlayerName;
+    public Color PlayerColor;
 
     private void Start()
     {
