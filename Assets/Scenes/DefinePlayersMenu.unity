@@ -1545,6 +1545,17 @@ MonoBehaviour:
   ToggleNotImplemented: {fileID: 1969134689}
   AddPlayerButton: {fileID: 497988704}
   tankPrefab: {fileID: 2995025732035133146, guid: 936cf2fa90013844db63863192c2548b, type: 3}
+  PlayerColors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 1, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0, b: 1, a: 1}
+  - {r: 0, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0.5019608, b: 0, a: 1}
+  - {r: 0.66082877, g: 0.5019608, b: 1, a: 1}
+  - {r: 0, g: 0.43294078, b: 0.7264151, a: 0}
+  - {r: 0.27567214, g: 0.6981132, b: 0, a: 1}
 --- !u!1 &825314501
 GameObject:
   m_ObjectHideFlags: 0
@@ -2392,8 +2403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9004d42d43864e94882bef290e17d6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _NrPlayers: 2
-  _NrRounds: 2
+  _NrPlayers: 4
+  _NrRounds: 5
   _BorderType: 1
   _StartMoney: 60000
 --- !u!4 &1554898715
