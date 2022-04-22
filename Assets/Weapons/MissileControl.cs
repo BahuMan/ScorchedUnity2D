@@ -27,13 +27,12 @@ public class MissileControl : MonoBehaviour
     private void Start()
     {
         _rigid = GetComponent<Rigidbody2D>();
-        GameController ctrl = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         startTime = Time.time;
     }
 
     private void FixedUpdate()
     {
         transform.right = _rigid.velocity;
-        if (startTime + 5f < Time.time) Destroy(this.gameObject);
+        if (startTime + 10f < Time.time) Destroy(this.gameObject);
     }
 }

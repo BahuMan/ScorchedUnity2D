@@ -71,7 +71,7 @@ public class ExplosionControl : MonoBehaviour
             foreach (GameObject go in ToDealDamage)
             {
                 if (go is null) continue; //one of the objects in the trigger was the original missile
-                ReceiveDamage rcv = go.GetComponent<ReceiveDamage>();
+                ReceiveDamage rcv = go?.GetComponent<ReceiveDamage>();
                 rcv?.RegisterDamage(this.gameObject);
             }
         }

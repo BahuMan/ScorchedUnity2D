@@ -28,7 +28,7 @@ public class CreateTanksForPlayers : MonoBehaviour, INode
             RaycastHit2D hit = Physics2D.BoxCast(toppos, Vector2.one, 0f, Vector2.down);
             Debug.Log("tank landed on " + hit.collider.gameObject.name);
             if (hit.collider.GetComponent<TerrainTile>() == null) Debug.Break();
-            newTank.transform.position = new Vector3(toppos.x, hit.point.y, 0f);
+            newTank.transform.position = new Vector3(toppos.x, hit.point.y + 0.2f, 0f);
             players[i].SetTank(newTank);
 
         }

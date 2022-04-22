@@ -1,11 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-//adding a new WeaponType, you should also update the WeaponInfo maps
-public enum WeaponTypeEnum { MONEY, MISSILE, DEFENSIVE, GUIDANCE }
-//adding a new Weapon, you should also update the WeaponInfo maps
-public enum WeaponEnum { MONEY, BABY_MISSILE }
-
 public class WeaponStock
 {
     public WeaponStock() { }
@@ -16,39 +11,6 @@ public class WeaponStock
 
     public WeaponEnum weapon;
     public int nrInStock;
-}
-
-/**
- * static Utility class to keep track of the types of each weapon.
- * This is generated code, but by hand :)
- */
-public class WeaponInfo
-{
-    private static Dictionary<WeaponTypeEnum, List<WeaponEnum>> TypeToWeapons = new Dictionary<WeaponTypeEnum, List<WeaponEnum>>();
-    private static Dictionary<WeaponEnum, WeaponTypeEnum> WeaponToType = new Dictionary<WeaponEnum, WeaponTypeEnum>();
-
-    static WeaponInfo() {
-        List<WeaponEnum> MoneyList = new List<WeaponEnum>();
-        MoneyList.Add(WeaponEnum.MONEY);
-        TypeToWeapons.Add(WeaponTypeEnum.MONEY, MoneyList);
-
-        List<WeaponEnum> MissileList = new List<WeaponEnum>();
-        MissileList.Add(WeaponEnum.BABY_MISSILE);
-        TypeToWeapons.Add(WeaponTypeEnum.MISSILE, MissileList);
-
-        WeaponToType.Add(WeaponEnum.MONEY, WeaponTypeEnum.MONEY);
-        WeaponToType.Add(WeaponEnum.BABY_MISSILE, WeaponTypeEnum.MISSILE);
-    }
-
-    public static IEnumerable<WeaponEnum> WeaponsOfType(WeaponTypeEnum t)
-    {
-        return TypeToWeapons[t];
-    }
-
-    public static WeaponTypeEnum TypeOf(WeaponEnum w)
-    {
-        return WeaponToType[w];
-    }
 }
 
 /**
@@ -73,7 +35,7 @@ public class WeaponInventory
     public List<WeaponStock> GetStockOfType(WeaponTypeEnum t)
     {
         List<WeaponStock> s = new List<WeaponStock>();
-        foreach(var w in WeaponInfo.WeaponsOfType(t))
+        foreach(var w in WeaponInfoControl.WeaponsOfType(t))
         {
             if (stock.ContainsKey(w))
             {
