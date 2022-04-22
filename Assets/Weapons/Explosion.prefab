@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5686840915531664667}
   - component: {fileID: 5686840915531664666}
   - component: {fileID: 468915912607605752}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 5686840915573398132}
   - component: {fileID: 5686840915573398134}
   - component: {fileID: 5686840915573398135}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}

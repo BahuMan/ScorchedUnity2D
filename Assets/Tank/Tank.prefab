@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2995025730162650188}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2995025730188431244}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2995025730255146185}
   - component: {fileID: 2995025730255146182}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2995025730758502153}
   - component: {fileID: 2995025730758502150}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Isometric Diamond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2995025730793383569}
   - component: {fileID: 2995025730793383662}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2995025731386439708}
   - component: {fileID: 2995025731386439709}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hexagon Flat-Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,7 +399,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2995025731534439782}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,7 +436,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2995025731589667817}
   - component: {fileID: 2995025731589667814}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Isometric Diamond (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -521,7 +521,7 @@ GameObject:
   - component: {fileID: 2995025732035133146}
   - component: {fileID: 2995025732035133145}
   - component: {fileID: -876396708003570115}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -648,7 +648,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2995025732176555572}
   - component: {fileID: 2995025732176555573}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}

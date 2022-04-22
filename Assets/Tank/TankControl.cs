@@ -22,7 +22,9 @@ public class TankControl : MonoBehaviour
         projectile.transform.rotation = Muzzle.rotation;
         projectile.velocity = Muzzle.right * Force;
 
-        GameController._instance.addThingToDo(new WaitForDestruction(projectile.GetComponent<MissileControl>()));
+        MissileControl m = projectile.GetComponent<MissileControl>();
+        m.firedBy = this;
+        GameController._instance.addThingToDo(new WaitForDestruction(m));
     }
 
     private void Update()

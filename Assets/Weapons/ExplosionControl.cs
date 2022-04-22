@@ -46,7 +46,7 @@ public class ExplosionControl : MonoBehaviour
         SetSize(curSize);
         if (curSize < lastSize)
         {
-            dealDamage();
+            //dealDamage();
             lastSize = 0f;
         }
         else {
@@ -89,6 +89,8 @@ public class ExplosionControl : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Explosion blasted " + collision.gameObject.name);
+            ReceiveDamage rcv = collision.GetComponent<ReceiveDamage>();
+            if (rcv != null) rcv.RegisterDamage(this.gameObject);
         ToDealDamage.Add(collision.gameObject);
     }
 }

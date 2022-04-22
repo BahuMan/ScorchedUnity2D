@@ -6,6 +6,7 @@ public class MissileControl : MonoBehaviour
     private ExplosionControl explosion;
 
     private float startTime;
+    public TankControl firedBy;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

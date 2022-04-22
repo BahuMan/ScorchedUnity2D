@@ -14,7 +14,6 @@ public class MIRVControl : MonoBehaviour
     private void Start()
     {
         _rigid = GetComponent<Rigidbody2D>();
-        GameController ctrl = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
     private void FixedUpdate()

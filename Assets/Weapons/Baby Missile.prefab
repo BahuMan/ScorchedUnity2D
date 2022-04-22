@@ -129,7 +129,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 10
-  m_LinearDrag: 0.5
+  m_LinearDrag: 0.1
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 5686840915573398135, guid: e2b1b863d2e61124e9a4908ec0b0443b, type: 3}
+  firedBy: {fileID: 0}
 --- !u!61 &3273757033793387380
 BoxCollider2D:
   m_ObjectHideFlags: 0
