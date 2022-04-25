@@ -3369,7 +3369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3ea7cd0b6537c429bf56f69f519d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delaySeconds: 0.5
 --- !u!114 &1250629436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5110,7 +5109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stock:
-  - weapon: 2
+  - weapon: 3
     nrInStock: 2
 --- !u!1 &2100745014
 GameObject:

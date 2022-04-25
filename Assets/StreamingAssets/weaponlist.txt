@@ -1,3 +1,4 @@
 #list of prefabs to be loaded as resources
 Baby Missile
 MIRV
+Funky Bomb

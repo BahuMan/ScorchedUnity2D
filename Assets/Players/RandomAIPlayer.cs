@@ -5,8 +5,8 @@ using UnityEngine;
 public class RandomAIPlayer : MonoBehaviour, SimpleBehaviour.INode
 {
     private TankControl myTank;
-    [SerializeField]
-    private float delaySeconds;
+
+    private const float delaySeconds = 0.2f;
 
     private float oldAngle;
     private float newAngle;
@@ -47,7 +47,7 @@ public class RandomAIPlayer : MonoBehaviour, SimpleBehaviour.INode
         oldAngle = myTank.Angle;
         oldForce = myTank.Force;
         newAngle = Random.Range(-10f, 190f);
-        newForce = Random.Range(5f, 50f);
+        newForce = Random.Range(50f, 500f);
         Debug.Log("My turn, now! angle = " + oldAngle + " -> " + newAngle + ", force = " + oldForce + " -> " + newForce);
         turnStartTime = Time.time;
         newTurn = false;

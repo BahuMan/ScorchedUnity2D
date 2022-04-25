@@ -5,7 +5,7 @@ using UnityEngine;
 //adding a new WeaponType, you should also update the WeaponInfo maps
 public enum WeaponTypeEnum { MONEY, MISSILE, DEFENSIVE, GUIDANCE }
 //adding a new Weapon, you should also update the WeaponInfo maps
-public enum WeaponEnum { MONEY, BABY_MISSILE, MIRV }
+public enum WeaponEnum { MONEY, BABY_MISSILE, MIRV, FUNKY_BOMB }
 
 [System.Serializable]
 public class WeaponInfo

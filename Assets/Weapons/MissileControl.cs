@@ -3,7 +3,7 @@ using UnityEngine;
 public class MissileControl : MonoBehaviour
 {
     [SerializeField]
-    private ExplosionControl explosion;
+    public ExplosionControl explosion;
 
     private float startTime;
     public TankControl firedBy;

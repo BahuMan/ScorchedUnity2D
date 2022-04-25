@@ -11,6 +11,7 @@ public class TankControl : MonoBehaviour
     private int hP = 1000;
     private float angle = 0f;
     private float force;
+    public const float ForceMultiplier = 10f;
 
     public UnityEvent<float> OnAngleChanged;
     public UnityEvent<float> OnForceChanged;
@@ -21,7 +22,7 @@ public class TankControl : MonoBehaviour
         Rigidbody2D projectile = Instantiate<Rigidbody2D>(shell);
         projectile.transform.position = Muzzle.position;
         projectile.transform.rotation = Muzzle.rotation;
-        projectile.velocity = Muzzle.right * Force / 20f;
+        projectile.velocity = Muzzle.right * Force / ForceMultiplier;
 
         MissileControl m = projectile.GetComponent<MissileControl>();
         m.firedBy = this;

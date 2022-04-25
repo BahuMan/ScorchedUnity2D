@@ -16,7 +16,6 @@ public class ExplosionControl : MonoBehaviour
     public AnimationCurve explosionGrowth;
 
     private float explosionStart;
-    private float lastSize = 0f; //will used to detect when fireball was at its maximum
 
     // Start is called before the first frame update
     void Start()
@@ -38,19 +37,7 @@ public class ExplosionControl : MonoBehaviour
         //calculate current size according to animationCurve:
         float curTime = Time.time - explosionStart;
         float curSize = ExplosionSize * explosionGrowth.Evaluate(curTime / ExplosionDuration);
-
-        //before fireball gets smaller again (=> at its maximum), deal damage:
         SetSize(curSize);
-        if (curSize < lastSize)
-        {
-            //dealDamage();
-            lastSize = 0f;
-        }
-        else {
-            //store for next frame:
-            lastSize = curSize;
-        }
-
     }
 
     private void SetSize(float curSize)
