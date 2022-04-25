@@ -79,7 +79,7 @@ public class BuyMenuController : MonoBehaviour
         {
             WeaponEnum id = w.GetID();
             int playerstock = inventory.GetStockForWeapon(id);
-            w.SetStock(playerstock);
+            w.SetStock(player, id, playerstock);
         }
     }
 

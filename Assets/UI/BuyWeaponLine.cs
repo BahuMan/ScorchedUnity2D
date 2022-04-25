@@ -9,19 +9,26 @@ public class BuyWeaponLine : MonoBehaviour, IPointerClickHandler
     [SerializeField] Image WeaponIcon;
     [SerializeField] Text DescriptionText;
     [SerializeField] Text PriceText;
+    
+    private int PriceNumber;
+    private GenericPlayer CurrentPlayer;
 
     public void SetWeapon(WeaponEnum id, Sprite icon, string description, int price)
     {
+        this.gameObject.name = "WeaponLine for " + description;
         this.Id = id;
         StockText.text = "";
         WeaponIcon.sprite = icon;
         DescriptionText.text = description;
         PriceText.text = $"$ {price}";
+        PriceNumber = price;
     }
 
-    public void SetStock(int stock)
+    public void SetStock(GenericPlayer p, WeaponEnum id, int stock)
     {
-        this.StockText.text = stock.ToString();
+        if (this.Id != id) Debug.LogError("Incorrect stock change at " + this.gameObject.name);
+        this.StockText.text = stock == 0? "": stock.ToString();
+        this.CurrentPlayer = p;
     }
 
     public WeaponEnum GetID()
@@ -31,6 +38,18 @@ public class BuyWeaponLine : MonoBehaviour, IPointerClickHandler
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("(pointer click) Player bought " + DescriptionText.text);
+        if (this.Id == WeaponEnum.BABY_MISSILE) return; //infinite baby missiles -> no action
+
+        WeaponInventory inv = CurrentPlayer.GetInventory();
+        int playerCash = inv.GetStockForWeapon(WeaponEnum.MONEY);
+        if (playerCash > PriceNumber)
+        {
+            //subtract price
+            inv.ChangeStockForWeapon(WeaponEnum.MONEY, -PriceNumber);
+            //add 1 weapon to stock:
+            inv.ChangeStockForWeapon(this.Id, 1);
+            //update GUI:
+            SetStock(CurrentPlayer, this.Id, inv.GetStockForWeapon(this.Id));
+        }
     }
 }
