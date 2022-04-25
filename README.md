@@ -1,11 +1,13 @@
 # ScorchedUnity2D
 my own re-interpretation of the mother of all games
+The DOS game is still downloadable at: http://www.whicken.com/scorch/
 
 ## Current status
 
 * [ ] More weapons!   *More!*   ***MORE!***
   * [x] Baby Missile
   * [x] MIRV
+  * [x] Funky Bomb!
 * [x] select active weapon from current inventory
   * [ ] (currently a bit wonky to de-select the window)
 * [x] buy menu between rounds
