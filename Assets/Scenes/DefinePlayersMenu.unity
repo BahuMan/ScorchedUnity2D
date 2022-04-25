@@ -2405,8 +2405,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _NrPlayers: 4
   _NrRounds: 5
-  _BorderType: 1
-  _StartMoney: 60000
+  _BorderType: 0
+  _StartMoney: 400
 --- !u!4 &1554898715
 Transform:
   m_ObjectHideFlags: 0

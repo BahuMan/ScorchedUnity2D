@@ -41,8 +41,7 @@ public class BuyWeaponLine : MonoBehaviour, IPointerClickHandler
         if (this.Id == WeaponEnum.BABY_MISSILE) return; //infinite baby missiles -> no action
 
         WeaponInventory inv = CurrentPlayer.GetInventory();
-        int playerCash = inv.GetStockForWeapon(WeaponEnum.MONEY);
-        if (playerCash > PriceNumber)
+        if (PriceNumber <= inv.GetStockForWeapon(WeaponEnum.MONEY))
         {
             //subtract price
             inv.ChangeStockForWeapon(WeaponEnum.MONEY, -PriceNumber);
@@ -50,6 +49,7 @@ public class BuyWeaponLine : MonoBehaviour, IPointerClickHandler
             inv.ChangeStockForWeapon(this.Id, 1);
             //update GUI:
             SetStock(CurrentPlayer, this.Id, inv.GetStockForWeapon(this.Id));
+            FindObjectOfType<PlayerCash>().SetCash(inv.GetStockForWeapon(WeaponEnum.MONEY));
         }
     }
 }

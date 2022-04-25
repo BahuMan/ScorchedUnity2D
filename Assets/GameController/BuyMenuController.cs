@@ -71,6 +71,7 @@ public class BuyMenuController : MonoBehaviour
     {
         GenericPlayer player = AllPlayers[p];
 
+        PlayerNameText.color = player.PlayerColor;
         PlayerNameText.text = player.PlayerName;
         WeaponInventory inventory = player.GetInventory();
         CashText.text = $"Cash: {inventory.GetStockForWeapon(WeaponEnum.MONEY)}";

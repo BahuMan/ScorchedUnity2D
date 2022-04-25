@@ -581,7 +581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5754f0db527fc4cbddb46f9a603458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shell: {fileID: 2528203062123267182, guid: e044fbf1af3d4fd4685793fb5625de57, type: 3}
+  shell: {fileID: 2528203062123267182, guid: da4eb2c5fcc33aa4195079a9a816f86e, type: 3}
   Gun: {fileID: 2995025730162650188}
   Muzzle: {fileID: 2995025730188431244}
   OnAngleChanged:

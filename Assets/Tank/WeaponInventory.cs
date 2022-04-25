@@ -23,6 +23,7 @@ public class WeaponInventory: MonoBehaviour
     public void Start()
     {
         stock = new Dictionary<WeaponEnum, WeaponStock>();
+        if (_stock == null) _stock = new List<WeaponStock>(10);
         foreach (var weapon in _stock)
         {
             stock.Add(weapon.weapon, weapon);

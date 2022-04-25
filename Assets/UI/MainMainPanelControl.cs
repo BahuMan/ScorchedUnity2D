@@ -18,9 +18,15 @@ public class MainMainPanelControl : MonoBehaviour
     [SerializeField] Button PlayOptionsButton;
     [SerializeField] Button ExitButton;
 
-    private void Start()
+    private void OnEnable()
     {
         Preferences._instance.OnPreferencesChanged += OnPreferencesChanged;
+        OnPreferencesChanged(Preferences._instance);
+    }
+
+    private void OnDisable()
+    {
+        Preferences._instance.OnPreferencesChanged -= OnPreferencesChanged;
     }
 
     public void StartButton_Clicked()

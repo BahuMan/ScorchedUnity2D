@@ -10,7 +10,7 @@ public class NextGame : INode
         GameController._instance.RemoveThingToDo(this);
         if (roundsPlayed < Preferences._instance.NrRounds)
         {
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("BuyMenu");
         }
         else
         {
