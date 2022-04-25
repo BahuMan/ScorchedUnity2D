@@ -167,7 +167,7 @@ MonoBehaviour:
   id: 3
   type: 1
   description: Funky Bomb
-  icon: {fileID: 21300000, guid: b6b313285de89b4408a5aea05b58610e, type: 3}
+  icon: {fileID: 21300000, guid: a9fee071735547245b70b71c8e3f2999, type: 3}
   price: 300
 --- !u!58 &6757351219372413157
 CircleCollider2D:

@@ -33,13 +33,13 @@ public class PickWeaponPanelControl: MonoBehaviour
             WeaponInfo info = WeaponInfoControl.GetInfo(s.weapon);
             if (s.weapon == WeaponEnum.BABY_MISSILE)
             {
-                LinePrefab.SetPlayerStock(curPlayer, s.nrInStock, info.description, info.prefab);
+                LinePrefab.SetPlayerStock(info.id, s.nrInStock, info.description);
             }
             else
             {
                 PickLine pl = Instantiate<PickLine>(LinePrefab);
                 pl.transform.SetParent(this.transform);
-                pl.SetPlayerStock(curPlayer, s.nrInStock, info.description, info.prefab);
+                pl.SetPlayerStock(info.id, s.nrInStock, info.description);
             }
         }    
     }

@@ -10,6 +10,8 @@ public class CurrentPlayerPanelControl : MonoBehaviour
     [SerializeField] private InputField ForceInput;
     [SerializeField] private InputField LifeText;
 
+    [SerializeField] private Image ActiveWeaponIcon;
+
     [SerializeField] private PickWeaponPanelControl PickWeaponPanel;
 
     private void Start()
@@ -31,6 +33,7 @@ public class CurrentPlayerPanelControl : MonoBehaviour
         }
 
         currentTank = tank;
+        PlayerNameText.color = currentTank.GetPlayer().PlayerColor;
         PlayerNameText.text = currentTank.GetPlayer().PlayerName;
         AngleInput.text = currentTank.Angle.ToString();
         ForceInput.text = currentTank.Force.ToString();
@@ -74,6 +77,13 @@ public class CurrentPlayerPanelControl : MonoBehaviour
     private void tank_OnHealthChanged(int newHealth)
     {
         this.LifeText.text = Mathf.RoundToInt(newHealth).ToString();
+    }
+
+    public void SetActiveWeapon(WeaponEnum w)
+    {
+        WeaponInfo info = WeaponInfoControl.GetInfo(w);
+        CurrentTank.shell = info.prefab;
+        ActiveWeaponIcon.sprite = info.icon;
     }
 
     private void OnEnable()
