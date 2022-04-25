@@ -4,18 +4,29 @@ using UnityEngine.EventSystems;
 
 public class BuyWeaponLine : MonoBehaviour, IPointerClickHandler
 {
-
+    [SerializeField] WeaponEnum Id;
     [SerializeField] Text StockText;
     [SerializeField] Image WeaponIcon;
     [SerializeField] Text DescriptionText;
     [SerializeField] Text PriceText;
 
-    public void SetWeapon(int stock, Sprite icon, string description, int price)
+    public void SetWeapon(WeaponEnum id, Sprite icon, string description, int price)
     {
-        StockText.text = stock.ToString();
+        this.Id = id;
+        StockText.text = "";
         WeaponIcon.sprite = icon;
         DescriptionText.text = description;
         PriceText.text = $"$ {price}";
+    }
+
+    public void SetStock(int stock)
+    {
+        this.StockText.text = stock.ToString();
+    }
+
+    public WeaponEnum GetID()
+    {
+        return Id;
     }
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData)

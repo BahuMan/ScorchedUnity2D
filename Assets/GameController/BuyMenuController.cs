@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +11,7 @@ public class BuyMenuController : MonoBehaviour
 
     [SerializeField] RectTransform WeaponList;
     
-    [SerializeField] BuyWeaponLine[] WeaponLine;
+    [SerializeField] BuyWeaponLine WeaponLinePrefab;
 
     [SerializeField] Button UpdateButton;
     [SerializeField] Button InventoryButton;
@@ -23,9 +23,30 @@ public class BuyMenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        FillWeaponList(WeaponTypeEnum.MISSILE);
         AllPlayers = FindObjectsOfType<GenericPlayer>();
         currentPlayer = -1;
         FindNextHumanPlayer();
+    }
+
+    private void FillWeaponList(WeaponTypeEnum wt)
+    {
+        foreach (var w in WeaponInfoControl.WeaponsOfType(wt))
+        {
+            WeaponInfo wi = WeaponInfoControl.GetInfo(w);
+            Debug.Log("showing weapon " + wi.description);
+            if (wi.id == WeaponEnum.BABY_MISSILE)
+            {
+                WeaponLinePrefab.SetWeapon(wi.id, wi.icon, wi.description, wi.price);
+            }
+            else
+            {
+                BuyWeaponLine weaponLine = Instantiate<BuyWeaponLine>(WeaponLinePrefab);
+                weaponLine.SetWeapon(wi.id, wi.icon, wi.description, wi.price);
+                weaponLine.transform.SetParent(WeaponList.transform, false);
+            }
+
+        }
     }
 
     private void FindNextHumanPlayer()
@@ -41,6 +62,7 @@ public class BuyMenuController : MonoBehaviour
         }
         else
         {
+            Debug.Log("All human players got to shop, starting the next game");
             UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
         }
     }
@@ -53,9 +75,11 @@ public class BuyMenuController : MonoBehaviour
         WeaponInventory inventory = player.GetInventory();
         CashText.text = $"Cash: {inventory.GetStockForWeapon(WeaponEnum.MONEY)}";
 
-        foreach (var w in WeaponLine)
+        foreach (var w in FindObjectsOfType<BuyWeaponLine>())
         {
-            //w.SetWeapon()
+            WeaponEnum id = w.GetID();
+            int playerstock = inventory.GetStockForWeapon(id);
+            w.SetStock(playerstock);
         }
     }
 
