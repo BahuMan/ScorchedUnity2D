@@ -64,33 +64,11 @@ public class ExplosionControl : MonoBehaviour
         }
     }
 
-    private void dealDamage()
-    {
-        try
-        {
-            foreach (GameObject go in ToDealDamage)
-            {
-                if (go is null) continue; //one of the objects in the trigger was the original missile
-                ReceiveDamage rcv = go?.GetComponent<ReceiveDamage>();
-                rcv?.RegisterDamage(this.gameObject);
-            }
-        }
-        catch (MissingReferenceException mre)
-        {
-            Debug.LogException(mre);
-        }
-        finally
-        {
-            ToDealDamage.Clear();
-        }
-
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Explosion blasted " + collision.gameObject.name);
             ReceiveDamage rcv = collision.GetComponent<ReceiveDamage>();
-            if (rcv != null) rcv.RegisterDamage(this.gameObject);
+            if (rcv != null) rcv.RegisterDamage(this.gameObject, 500);
         ToDealDamage.Add(collision.gameObject);
     }
 }

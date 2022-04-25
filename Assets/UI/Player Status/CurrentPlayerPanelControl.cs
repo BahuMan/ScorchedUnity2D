@@ -27,6 +27,7 @@ public class CurrentPlayerPanelControl : MonoBehaviour
         {
             currentTank.OnForceChanged.RemoveListener(tank_OnForceChanged);
             currentTank.OnAngleChanged.RemoveListener(tank_OnAngleChanged);
+            currentTank.OnHealthChanged.RemoveListener(tank_OnHealthChanged);
         }
 
         currentTank = tank;
@@ -37,6 +38,7 @@ public class CurrentPlayerPanelControl : MonoBehaviour
 
         currentTank.OnForceChanged.AddListener(tank_OnForceChanged);
         currentTank.OnAngleChanged.AddListener(tank_OnAngleChanged);
+        currentTank.OnHealthChanged.AddListener(tank_OnHealthChanged);
     }
 
     public void MissileButton_OnClicked()
@@ -69,12 +71,18 @@ public class CurrentPlayerPanelControl : MonoBehaviour
         ForceInput.text = Mathf.RoundToInt(newForce).ToString();
     }
 
+    private void tank_OnHealthChanged(int newHealth)
+    {
+        this.LifeText.text = Mathf.RoundToInt(newHealth).ToString();
+    }
+
     private void OnEnable()
     {
         if (currentTank != null)
         {
             currentTank.OnForceChanged.AddListener(tank_OnForceChanged);
             currentTank.OnAngleChanged.AddListener(tank_OnAngleChanged);
+            currentTank.OnHealthChanged.AddListener(tank_OnHealthChanged);
         }
     }
 
@@ -84,6 +92,7 @@ public class CurrentPlayerPanelControl : MonoBehaviour
         {
             currentTank.OnForceChanged.RemoveListener(tank_OnForceChanged);
             currentTank.OnAngleChanged.RemoveListener(tank_OnAngleChanged);
+            currentTank.OnHealthChanged.RemoveListener(tank_OnHealthChanged);
         }
     }
 }

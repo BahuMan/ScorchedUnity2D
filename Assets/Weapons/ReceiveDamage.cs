@@ -2,10 +2,10 @@ using UnityEngine;
 using UnityEngine.Events;
 public class ReceiveDamage : MonoBehaviour
 {
-    public UnityEvent<GameObject> OnDamageReceived;
+    public UnityEvent<GameObject, int> OnDamageReceived;
 
-    public void RegisterDamage(GameObject dealtBy)
+    public void RegisterDamage(GameObject dealtBy, int dmg)
     {
-        OnDamageReceived.Invoke(dealtBy);
+        OnDamageReceived.Invoke(dealtBy, dmg);
     }
 }

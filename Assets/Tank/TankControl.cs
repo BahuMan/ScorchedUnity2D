@@ -14,13 +14,14 @@ public class TankControl : MonoBehaviour
 
     public UnityEvent<float> OnAngleChanged;
     public UnityEvent<float> OnForceChanged;
+    public UnityEvent<int> OnHealthChanged;
 
     public void Fire()
     {
         Rigidbody2D projectile = Instantiate<Rigidbody2D>(shell);
         projectile.transform.position = Muzzle.position;
         projectile.transform.rotation = Muzzle.rotation;
-        projectile.velocity = Muzzle.right * Force;
+        projectile.velocity = Muzzle.right * Force / 20f;
 
         MissileControl m = projectile.GetComponent<MissileControl>();
         m.firedBy = this;
@@ -37,10 +38,16 @@ public class TankControl : MonoBehaviour
         this.Gun.rotation = Quaternion.Euler(0f,0f, a);
     }
 
-    public void OnDamageReceived(GameObject src)
+    public void OnDamageReceived(GameObject src, int dmg)
     {
-        HP = 0;
-        Debug.Log("ow");
+        HP -= dmg;
+        if (HP <= 0) Debug.Log("ow");
+        OnHealthChanged.Invoke(HP);
+        if (this.force > this.hP)
+        {
+            this.force = this.hP;
+            OnForceChanged.Invoke(this.force);
+        }
     }
 
     private SimpleBehaviour.INode OnMyTurn = null;
@@ -56,7 +63,7 @@ public class TankControl : MonoBehaviour
     public float Force {
         get => force;
         set {
-            force = value;
+            force = Mathf.Min(HP, value);
             OnForceChanged.Invoke(force);
         }
     }
