@@ -4219,6 +4219,7 @@ MonoBehaviour:
   AngleInput: {fileID: 1592118426}
   ForceInput: {fileID: 1114626289}
   LifeText: {fileID: 1981603428}
+  ActiveWeaponIcon: {fileID: 231707943}
   PickWeaponPanel: {fileID: 1977199571}
 --- !u!1 &1805701072
 GameObject:

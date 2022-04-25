@@ -28,7 +28,9 @@ public class TalkAndDie : INode
             GameObject go = Object.Instantiate(_explosion);
             go.transform.position = _tank.transform.position;
         }
-        Object.Destroy(_tank.gameObject);
+        //in case of multiple explosions, a "TalkAndDie" could've been instantiated
+        //multiple times
+        if (_tank!=null) Object.Destroy(_tank.gameObject);
         return TreeStatusEnum.SUCCESS;
     }
 }
