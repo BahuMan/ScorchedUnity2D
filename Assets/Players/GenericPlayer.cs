@@ -16,10 +16,9 @@ public class GenericPlayer : MonoBehaviour
 
     private void Start()
     {
-        myInventory = new WeaponInventory();
-        myInventory.ChangeStockForWeapon(WeaponEnum.MONEY, Preferences._instance.StartMoney);
-
+        myInventory = GetComponent<WeaponInventory>();
     }
+
     private TankControl instantiatedTank;
     public TankControl GetTank() { return instantiatedTank; }
     public void SetTank(TankControl t)

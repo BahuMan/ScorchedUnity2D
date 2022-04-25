@@ -99,6 +99,7 @@ public class AddPlayerPanelControl : MonoBehaviour
         if (HumanPlayerPanel.activeSelf)
         {
             newp = new GameObject("Human Player " + PlayerNameInput.text);
+            newp.AddComponent<WeaponInventory>();
             player = newp.AddComponent<GenericPlayer>();
             player.PlayerType = GenericPlayer.PlayerTypeEnum.HUMAN;
             player.PlayerName = PlayerNameInput.text;
@@ -110,6 +111,7 @@ public class AddPlayerPanelControl : MonoBehaviour
             if (ToggleMoron.isOn)
             {
                 newp = new GameObject("Bot " + botNames[nextBotName] + " (Moron)");
+                newp.AddComponent<WeaponInventory>();
                 player = newp.AddComponent<GenericPlayer>();
                 player.PlayerType= GenericPlayer.PlayerTypeEnum.MORON;
                 player.PlayerName = botNames[nextBotName];

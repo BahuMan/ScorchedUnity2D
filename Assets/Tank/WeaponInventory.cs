@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+[System.Serializable]
 public class WeaponStock
 {
     public WeaponStock() { }
@@ -13,17 +14,21 @@ public class WeaponStock
     public int nrInStock;
 }
 
-/**
- * Each tank will have an instance of inventory
- */
-public class WeaponInventory
+public class WeaponInventory: MonoBehaviour
 {
+
+    [SerializeField] List<WeaponStock> _stock;
     private Dictionary<WeaponEnum, WeaponStock> stock;
 
-    public WeaponInventory()
+    public void Start()
     {
         stock = new Dictionary<WeaponEnum, WeaponStock>();
-        stock.Add(WeaponEnum.BABY_MISSILE, new WeaponStock { weapon = WeaponEnum.BABY_MISSILE, nrInStock = 666});
+        foreach (var weapon in _stock)
+        {
+            stock.Add(weapon.weapon, weapon);
+        }
+        SetStockForWeapon(WeaponEnum.BABY_MISSILE, 666);
+        SetStockForWeapon(WeaponEnum.MONEY, Preferences._instance.StartMoney);
     }
 
     public int GetStockForWeapon(WeaponEnum w)
@@ -49,12 +54,27 @@ public class WeaponInventory
         return stock.Keys.GetEnumerator();
     }
 
+    private void SetStockForWeapon(WeaponEnum w, int s)
+    {
+        if (!stock.ContainsKey(w))
+        {
+            WeaponStock ws = new WeaponStock { weapon = w, nrInStock = s };
+            stock.Add(w, ws);
+            _stock.Add(ws);
+        }
+        else
+        {
+            stock[w].nrInStock = s;
+        }
+
+    }
+
     public int ChangeStockForWeapon(WeaponEnum w, int delta)
     {
         //baby missiles are infinite; never change the number in stock;
         if (w == WeaponEnum.BABY_MISSILE) return 666;
 
-        if (!stock.ContainsKey(w)) stock[w] = new WeaponStock { nrInStock = delta, weapon = w };
+        if (!stock.ContainsKey(w)) stock.Add(w, new WeaponStock { nrInStock = delta, weapon = w });
         else stock[w].nrInStock += delta;
 
         return stock[w].nrInStock;

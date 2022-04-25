@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 4381216}
   - component: {fileID: 4381215}
   - component: {fileID: 4381213}
+  - component: {fileID: 4381214}
   m_Layer: 0
   m_Name: PCPlayer1 (1)
   m_TagString: Untagged
@@ -154,6 +155,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delaySeconds: 0.5
+--- !u!114 &4381214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4381212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c6f5ccdd3da1b419048581bd783345, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stock:
+  - weapon: 0
+    nrInStock: 1000
+  - weapon: 1
+    nrInStock: 99
+  - weapon: 2
+    nrInStock: 1
 --- !u!114 &4381215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,7 +573,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 37.015385}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &214632655
 MonoBehaviour:
@@ -675,6 +695,7 @@ GameObject:
   - component: {fileID: 333647797}
   - component: {fileID: 333647796}
   - component: {fileID: 333647795}
+  - component: {fileID: 333647798}
   m_Layer: 0
   m_Name: HumanPlayer1 (1)
   m_TagString: Untagged
@@ -724,6 +745,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &333647798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333647794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c6f5ccdd3da1b419048581bd783345, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stock:
+  - weapon: 0
+    nrInStock: 1000
+  - weapon: 1
+    nrInStock: 99
+  - weapon: 2
+    nrInStock: 1
 --- !u!1 &429321911
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,7 +806,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 37.015385}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &429321913
 MonoBehaviour:
@@ -1203,6 +1243,7 @@ GameObject:
   - component: {fileID: 870562793}
   - component: {fileID: 870562792}
   - component: {fileID: 870562791}
+  - component: {fileID: 870562794}
   m_Layer: 0
   m_Name: HumanPlayer1
   m_TagString: Untagged
@@ -1252,6 +1293,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &870562794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870562790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c6f5ccdd3da1b419048581bd783345, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stock:
+  - weapon: 0
+    nrInStock: 1000
+  - weapon: 1
+    nrInStock: 99
+  - weapon: 2
+    nrInStock: 1
 --- !u!1 &881507507
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,19 +1341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bc2f95035197ea40a433d8c51c56c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AllWeapons:
-  - id: 0
-    type: 0
-    description: Cash
-    icon: {fileID: 21300000, guid: 44aacd106b9327641aa424d8feef6e68, type: 3}
-    price: 0
-    prefab: {fileID: 0}
-  - id: 1
-    type: 1
-    description: Baby Missile
-    icon: {fileID: 21300000, guid: b6b313285de89b4408a5aea05b58610e, type: 3}
-    price: 10
-    prefab: {fileID: 2528203062123267182, guid: da4eb2c5fcc33aa4195079a9a816f86e, type: 3}
+  AllWeapons: []
 --- !u!4 &881507509
 Transform:
   m_ObjectHideFlags: 0
@@ -2582,6 +2630,7 @@ GameObject:
   - component: {fileID: 1360553806}
   - component: {fileID: 1360553805}
   - component: {fileID: 1360553803}
+  - component: {fileID: 1360553804}
   m_Layer: 0
   m_Name: PCPlayer1
   m_TagString: Untagged
@@ -2602,6 +2651,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delaySeconds: 0.5
+--- !u!114 &1360553804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360553802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c6f5ccdd3da1b419048581bd783345, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stock:
+  - weapon: 0
+    nrInStock: 1000
+  - weapon: 1
+    nrInStock: 99
+  - weapon: 2
+    nrInStock: 1
 --- !u!114 &1360553805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2674,7 +2742,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 37.015385}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1398884277
 MonoBehaviour:
@@ -3678,7 +3746,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 37.015385}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2021396760
 MonoBehaviour:
