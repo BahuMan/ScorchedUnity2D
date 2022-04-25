@@ -961,6 +961,7 @@ GameObject:
   - component: {fileID: 1006188279}
   - component: {fileID: 1006188281}
   - component: {fileID: 1006188280}
+  - component: {fileID: 1006188282}
   m_Layer: 5
   m_Name: CashText
   m_TagString: Untagged
@@ -1029,6 +1030,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006188278}
   m_CullTransparentMesh: 1
+--- !u!114 &1006188282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006188278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5efe449ac7637c6418c1ea73f540f830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1044574418
 GameObject:
   m_ObjectHideFlags: 0
@@ -1710,7 +1723,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 36.73846}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1398884277
 MonoBehaviour:

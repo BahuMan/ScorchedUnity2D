@@ -68,10 +68,12 @@ public class WeaponInfoControl : MonoBehaviour
     private void LoadAllWeapons()
     {
         //AllWeapons = new List<WeaponInfo>(100);
-        string[] prefabFiles = Directory.GetFiles(Application.dataPath + "/Weapons/Resources", "*.prefab");
+        string prefablist = File.ReadAllText(Application.streamingAssetsPath + "/WeaponList.txt", System.Text.Encoding.UTF8);
+        string[] prefabFiles = prefablist.Split("\r\n".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);
         Debug.Log("Found " + prefabFiles.Length + " files:");
         foreach (var file in prefabFiles)
         {
+            if (file.StartsWith("#")) continue; //ignore comments
             string resname = Path.GetFileNameWithoutExtension(file);
             Rigidbody2D w = Resources.Load<Rigidbody2D>(resname);
             WeaponSelfDescription desc = w.GetComponent<WeaponSelfDescription>();

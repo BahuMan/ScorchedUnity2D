@@ -12,9 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/DefinePlayersMenu.unity
     guid: b1f12ce052cf5404ba5e8ae3141ffa9e
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
     path: Assets/Scenes/BuyMenu.unity
     guid: cd0d69631ba1f9046b7e4e4f4ac7612f
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

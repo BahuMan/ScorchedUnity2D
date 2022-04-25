@@ -13,7 +13,7 @@ public class ChatBubbleControl : MonoBehaviour
     [SerializeField]
     private Camera thiscam;
     private string[] FireLines;
-    private string[] LastWords;
+    //private string[] LastWords;
     public enum ChatMoment { FIRE, DIE }
 
     private void Start()
@@ -25,15 +25,16 @@ public class ChatBubbleControl : MonoBehaviour
 
     private void ReadChatFiles()
     {
-        TextAsset FireTextFile = Resources.Load<TextAsset>("fire");
-        if (FireTextFile == null) throw new System.Exception("could not find resource 'fire'");
-        if (FireTextFile.text == null) throw new System.Exception("Could find, but not read resource 'fire'");
-        FireLines = FireTextFile.text.Split("\r\n".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);
+        string fireText = File.ReadAllText(Application.streamingAssetsPath + "/fire.txt", System.Text.Encoding.UTF8);
+        //TextAsset FireTextFile = Resources.Load<TextAsset>("fire");
+        //if (FireTextFile == null) throw new System.Exception("could not find resource 'fire'");
+        //if (FireTextFile.text == null) throw new System.Exception("Could find, but not read resource 'fire'");
+        FireLines = fireText.Split("\r\n".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);
 
-        TextAsset LastWordsTextfile = Resources.Load<TextAsset>("lastwords");
-        if (LastWordsTextfile == null) throw new System.Exception("could not find resource 'lastwords'");
-        if (LastWordsTextfile.text == null) throw new System.Exception("could find, but not read resource 'lastwords;");
-        LastWords = LastWordsTextfile.text.Split("\r\n".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);
+        //TextAsset LastWordsTextfile = Resources.Load<TextAsset>("lastwords");
+        //if (LastWordsTextfile == null) throw new System.Exception("could not find resource 'lastwords'");
+        //if (LastWordsTextfile.text == null) throw new System.Exception("could find, but not read resource 'lastwords;");
+        //LastWords = LastWordsTextfile.text.Split("\r\n".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);
     }
 
     public void ShowChatBubble(Transform worldCoordinates, ChatMoment when)
