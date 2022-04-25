@@ -10,12 +10,16 @@ public class CurrentPlayerPanelControl : MonoBehaviour
     [SerializeField] private InputField ForceInput;
     [SerializeField] private InputField LifeText;
 
+    [SerializeField] private PickWeaponPanelControl PickWeaponPanel;
+
     private void Start()
     {
         instance = this;
     }
 
     TankControl currentTank;
+    public TankControl CurrentTank { get { return currentTank; } }
+    public GenericPlayer CurrentPlayer { get { return CurrentTank.GetPlayer(); } }
 
     public void SetCurrentTank(TankControl tank)
     {
@@ -33,6 +37,12 @@ public class CurrentPlayerPanelControl : MonoBehaviour
 
         currentTank.OnForceChanged.AddListener(tank_OnForceChanged);
         currentTank.OnAngleChanged.AddListener(tank_OnAngleChanged);
+    }
+
+    public void MissileButton_OnClicked()
+    {
+        //toggle panel:
+        PickWeaponPanel.gameObject.SetActive(!PickWeaponPanel.gameObject.activeSelf);
     }
 
     public void input_OnAngleChanged()
