@@ -18,14 +18,11 @@ public class ExplosionControl : MonoBehaviour
     private float explosionStart;
     private float lastSize = 0f; //will used to detect when fireball was at its maximum
 
-    private HashSet<GameObject> ToDealDamage;
-
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("fireball");
         explosionStart = Time.time;
-        ToDealDamage = new HashSet<GameObject>();
         SetSize(0f);
     }
 
@@ -67,8 +64,7 @@ public class ExplosionControl : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Explosion blasted " + collision.gameObject.name);
-            ReceiveDamage rcv = collision.GetComponent<ReceiveDamage>();
-            if (rcv != null) rcv.RegisterDamage(this.gameObject, 500);
-        ToDealDamage.Add(collision.gameObject);
+        ReceiveDamage rcv = collision.GetComponent<ReceiveDamage>();
+        if (rcv != null) rcv.RegisterDamage(this.gameObject, 500);
     }
 }
