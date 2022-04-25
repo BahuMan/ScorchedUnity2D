@@ -41,7 +41,11 @@ public class TankControl : MonoBehaviour
     public void OnDamageReceived(GameObject src, int dmg)
     {
         HP -= dmg;
-        if (HP <= 0) Debug.Log("ow");
+        if (HP <= 0)
+        {
+            GameController._instance.addThingToDo(new TalkAndDie(this, null));
+            Debug.Log("ow");
+        }
         OnHealthChanged.Invoke(HP);
         if (this.force > this.hP)
         {

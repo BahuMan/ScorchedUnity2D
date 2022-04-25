@@ -64,15 +64,15 @@ public class RoundRobinTurns : INode, IAdvanceTurn
 
         TreeStatusEnum INode.Tick()
         {
-            if (toTest.HP > 0)
+            if (toTest == null || toTest.HP <= 0)
             {
-                rr.AdvanceTurn();
+                Debug.Log("Tank is dead => will be removed from turns");
             }
             else
             {
-                Debug.Log("Tank " + toTest.name + " is dead => will be removed from turns");
+                rr.AdvanceTurn();
             }
-        GameController._instance.RemoveThingToDo(this);
+            GameController._instance.RemoveThingToDo(this);
             return TreeStatusEnum.SUCCESS;
         }
     }
