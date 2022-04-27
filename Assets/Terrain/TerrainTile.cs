@@ -5,7 +5,7 @@ public class TerrainTile : MonoBehaviour
 
     [SerializeField] private BoxCollider2D _boxCollider;
     [SerializeField] private SpriteRenderer _spriteRenderer;
-    
+
     public int depth;
     private TerrainTile bottomLeft;
     private TerrainTile bottomRight;
@@ -28,10 +28,20 @@ public class TerrainTile : MonoBehaviour
         private set { _boxCollider.enabled = _spriteRenderer.enabled = value; }
     }
 
+    private float InverseLerp(float min, float max, float v)
+    {
+        return (v - min) / (max - min);
+    }
+
     public void SplitRandomly ()
     {
+        //const float randomness = -5f;
+
         TerrainGenerator gen = FindObjectOfType<TerrainGenerator>();
-        float odds = Mathf.InverseLerp(gen.minHeight, gen.maxHeight, this.transform.position.y);
+        float odds = InverseLerp(gen.minHeight, gen.maxHeight, this.transform.position.y);
+        //odds = (randomness * .5f + odds) / (randomness+1);
+        //odds = Mathf.Sin(odds * Mathf.PI);
+        //odds = Mathf.Pow(odds, randomness);
         Visible = Random.value > odds;
 
         //stop the recursion when we become too small:

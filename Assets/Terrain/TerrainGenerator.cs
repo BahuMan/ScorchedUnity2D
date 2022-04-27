@@ -26,10 +26,11 @@ public class TerrainGenerator : MonoBehaviour, INode
 
         TerrainTile topTile = Instantiate<TerrainTile>(TilePrefab);
         topTile.transform.SetParent(transform);
-        topTile.transform.position = Vector2.up * width/2;
+        topTile.transform.position = Vector2.up * width;
         topTile.transform.localScale = Vector2.one * Mathf.Pow(2, width-3);
         topTile.depth = width;
         topTile.SplitRandomly();
+        //Debug.Break();
     }
 
     TreeStatusEnum INode.Tick()
