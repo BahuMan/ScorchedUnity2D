@@ -150,3 +150,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c92df6e098000e947a74227943d455e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _boxCollider: {fileID: 34479968295292286}
+  _spriteRenderer: {fileID: 4389144747943373907}

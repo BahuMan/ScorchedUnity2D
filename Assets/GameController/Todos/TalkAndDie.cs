@@ -3,10 +3,12 @@ using SimpleBehaviour;
 
 public class TalkAndDie : INode
 {
-    private TankControl _tank;
-    private float talkdelay = 1f;
-    private float DieAtTime = 0f;
-    private GameObject _explosion;
+    #pragma warning disable IDE0044 // Add readonly modifier
+    private TankControl _tank;      // The tank may change because it can be destroyed externally
+    #pragma warning restore IDE0044 // Add readonly modifier
+    private const float talkdelay = 1f;
+    private readonly float DieAtTime = 0f;
+    private readonly GameObject _explosion;
 
     public TalkAndDie(TankControl tank, GameObject explosion)
     {

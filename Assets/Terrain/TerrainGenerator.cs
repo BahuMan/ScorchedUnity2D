@@ -4,42 +4,31 @@ using SimpleBehaviour;
 public class TerrainGenerator : MonoBehaviour, INode
 {
 
-    public GameObject TilePrefab;
+    public TerrainTile TilePrefab;
     public int roughness = 5;
 
     public int minHeight = 10;
     public int maxHeight = 80;
-    public int width = 96;
+    public int width = 128;
 
-    void Start()
+
+    [ContextMenu("Destroy")]
+    public void DestroyTerrain()
     {
+        while (transform.childCount > 0) DestroyImmediate(transform.GetChild(0).gameObject);
     }
 
     [ContextMenu("Generate")]
     public void GenerateTerrain()
     {
 
-        foreach (Transform child in this.transform) DestroyImmediate(child.gameObject);
+        //DestroyTerrain();
 
-        int curHeight = Random.Range(minHeight, maxHeight);
-        for (int x = -width; x <= width; ++x)
-        {
-            for (int y = 0; y<curHeight; ++y)
-            {
-                GameObject t = Instantiate(TilePrefab);
-                t.transform.position = new Vector2(x, y);
-                t.transform.SetParent(transform);
-            }
-            curHeight = curHeight + Random.Range(-roughness, roughness);
-            if (curHeight < minHeight) curHeight = minHeight;
-            if (curHeight > maxHeight) curHeight = maxHeight;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        TerrainTile topTile = Instantiate<TerrainTile>(TilePrefab);
+        topTile.transform.SetParent(transform);
+        topTile.transform.position = Vector2.up * width/2;
+        topTile.transform.localScale = Vector2.one * width;
+        topTile.SplitRandomly(width);
     }
 
     TreeStatusEnum INode.Tick()
