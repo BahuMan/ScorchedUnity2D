@@ -67,12 +67,20 @@ public class ESCMenuHotkey : MonoBehaviour, INode
 
     public void ESC_KillAll_Clicked()
     {
-        Debug.Log("Armageddon!");
+        foreach (TankControl t in FindObjectsOfType<TankControl>())
+        {
+            t.HP = 0;
+        }
     }
 
     public void ESC_Quit_Clicked()
     {
         Debug.Log("Bye");
         UnityEngine.Application.Quit();
+    }
+
+    private void OnDestroy()
+    {
+        Time.timeScale = 0.8f; //level ended -> normal speed again
     }
 }

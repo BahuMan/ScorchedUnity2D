@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
         ThingsToDo.Push(new RoundRobinTurns(FindObjectsOfType<GenericPlayer>()));
         ThingsToDo.Push(GetComponent<CreateTanksForPlayers>());
         ThingsToDo.Push(_terrain);
+        ThingsToDo.Push(new DebugWaitForSeconds(.01f));
     }
 
     // Update is called once per frame
