@@ -50,7 +50,7 @@ public class ExplosionControl : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Explosion blasted " + collision.gameObject.name);
+        //Debug.Log("Explosion blasted " + collision.gameObject.name);
         ReceiveDamage rcv = collision.GetComponent<ReceiveDamage>();
         if (rcv != null) rcv.RegisterDamage(this.gameObject, 500);
     }
