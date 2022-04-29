@@ -16,6 +16,7 @@ public class TankControl : MonoBehaviour
     public UnityEvent<float> OnAngleChanged;
     public UnityEvent<float> OnForceChanged;
     public UnityEvent<int> OnHealthChanged;
+    public UnityEvent<Rigidbody2D> OnShellFired;
 
     public void Fire()
     {
@@ -27,6 +28,7 @@ public class TankControl : MonoBehaviour
         MissileControl m = projectile.GetComponent<MissileControl>();
         m.firedBy = this;
         GameController._instance.addThingToDo(new WaitForDestruction(m));
+        if (OnShellFired != null) OnShellFired.Invoke(projectile);
     }
 
     private void Update()

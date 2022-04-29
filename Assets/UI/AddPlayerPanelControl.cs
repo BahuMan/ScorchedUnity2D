@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class AddPlayerPanelControl : MonoBehaviour
 {
+    [System.Serializable]
+    public class PlayerTypesClass
+    {
+        public GenericPlayer LocalHumanPrefab;
+        public GenericPlayer MoronPrefab;
+        public GenericPlayer TosserPrefab;
+    }
+    [SerializeField] PlayerTypesClass PlayerPrefabs;
 
     [SerializeField] Text PlayerOrderText;
     [SerializeField] GameObject HumanPlayerPanel;
@@ -13,6 +21,7 @@ public class AddPlayerPanelControl : MonoBehaviour
     [SerializeField] Slider HumanPCSlider;
     
     [SerializeField] Toggle ToggleMoron;
+    [SerializeField] Toggle ToggleTosser;
     [SerializeField] Toggle ToggleNotImplemented;
 
     [SerializeField] Button AddPlayerButton;
@@ -56,6 +65,10 @@ public class AddPlayerPanelControl : MonoBehaviour
         {
             PlayerNameInput.Select();
         }
+        else if (Input.GetKeyDown(KeyCode.T) && BotPlayerPanel.activeSelf)
+        {
+            ToggleTosser.isOn = true;
+        }
         else if (Input.GetKeyDown(KeyCode.M) && BotPlayerPanel.activeSelf)
         {
             ToggleMoron.isOn = true;
@@ -94,41 +107,40 @@ public class AddPlayerPanelControl : MonoBehaviour
     }
     public void DoneButton_OnClick()
     {
-        GameObject newp;
         GenericPlayer player;
         if (HumanPlayerPanel.activeSelf)
         {
-            newp = new GameObject("Human Player " + PlayerNameInput.text);
-            newp.AddComponent<WeaponInventory>();
-            player = newp.AddComponent<GenericPlayer>();
-            player.PlayerType = GenericPlayer.PlayerTypeEnum.HUMAN;
+            player = Instantiate<GenericPlayer>(PlayerPrefabs.LocalHumanPrefab);
+            player.gameObject.name = PlayerNameInput.text + " (Human)";
             player.PlayerName = PlayerNameInput.text;
             player.PlayerColor = this.PlayerColors[currentColor++];
-            newp.AddComponent<LocalHumanPlayer>();
         }
         else
         {
             if (ToggleMoron.isOn)
             {
-                newp = new GameObject("Bot " + botNames[nextBotName] + " (Moron)");
-                newp.AddComponent<WeaponInventory>();
-                player = newp.AddComponent<GenericPlayer>();
-                player.PlayerType= GenericPlayer.PlayerTypeEnum.MORON;
+                player = Instantiate<GenericPlayer>(PlayerPrefabs.MoronPrefab);
+                player.gameObject.name = botNames[nextBotName] + " (Moron)";
                 player.PlayerName = botNames[nextBotName];
                 player.PlayerColor = this.PlayerColors[currentColor++];
-                newp.AddComponent<RandomAIPlayer>();
+                nextBotName++;
+            }
+            else if (ToggleTosser.isOn)
+            {
+                player = Instantiate<GenericPlayer>(PlayerPrefabs.TosserPrefab);
+                player.gameObject.name = botNames[nextBotName] + " (Tosser)";
+                player.PlayerName = botNames[nextBotName];
+                player.PlayerColor = this.PlayerColors[currentColor++];
                 nextBotName++;
             }
             else
             {
-                newp = null;
                 player = null;
                 Debug.Log("That's not going to work ...");
             }
         }
-        player.SetPreferredTankPrefab(tankPrefab);
-        newp.transform.position = Vector3.zero;
-        DontDestroyOnLoad(newp);
+        player.transform.position = Vector3.zero;
+        DontDestroyOnLoad(player.gameObject);
         currentPlayerNumber++;
 
         //start play if we've defined all players:

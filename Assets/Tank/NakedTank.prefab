@@ -522,7 +522,7 @@ GameObject:
   - component: {fileID: 2995025732035133145}
   - component: {fileID: -876396708003570115}
   m_Layer: 10
-  m_Name: Tank
+  m_Name: NakedTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -48,7 +48,6 @@ public class ChatBubbleControl : MonoBehaviour
         Debug.Log("Chat " + theText + " at " + wpos);
         gameObject.SetActive(true);
         Vector3 screenpoint = thiscam.WorldToScreenPoint(wpos);
-        Debug.Log("ShowChatBubble converted " + worldCoordinates.position + " to " + screenpoint);
         transform.position = screenpoint + offset;
         Chattext.text = theText;
         Chattext.CalculateLayoutInputHorizontal();
