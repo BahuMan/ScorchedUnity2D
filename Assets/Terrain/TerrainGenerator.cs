@@ -39,4 +39,13 @@ public class TerrainGenerator : MonoBehaviour, INode
         GameController._instance.RemoveThingToDo(this);
         return TreeStatusEnum.SUCCESS;
     }
+
+    public void AddDirt(Collider2D shape)
+    {
+        foreach (Transform child in transform)
+        {
+            TerrainTile t = child.GetComponent<TerrainTile>();
+            if (t != null) t.AddDirt(shape);
+        }
+    }
 }

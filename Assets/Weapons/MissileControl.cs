@@ -3,7 +3,7 @@ using UnityEngine;
 public class MissileControl : MonoBehaviour
 {
     [SerializeField]
-    public ExplosionControl explosion;
+    public GameObject explosion;
 
     private float startTime;
     public TankControl firedBy;
@@ -18,7 +18,7 @@ public class MissileControl : MonoBehaviour
             return; //allow bounce; no explosion
         }
 
-        ExplosionControl fireball = Instantiate<ExplosionControl>(explosion, this.transform.position, Quaternion.identity);
+        GameObject fireball = Instantiate(explosion, this.transform.position, Quaternion.identity);
         GameController._instance.addThingToDo(new WaitForDestruction(fireball));
         Destroy(this.gameObject);
     }

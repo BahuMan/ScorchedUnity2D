@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class WaitForDestruction : SimpleBehaviour.INode
 {
-    private MonoBehaviour waiting;
-    public WaitForDestruction(MonoBehaviour waitfor)
+    private Object waiting;
+    public WaitForDestruction(Object waitfor)
     {
         waiting = waitfor;
     }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class MIRVControl : MonoBehaviour
 {
 
-    [SerializeField] ExplosionControl explosion;
     [SerializeField] Rigidbody2D reentryVehicle;
     [SerializeField] float horizontalSpread;
 

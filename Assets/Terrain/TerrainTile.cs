@@ -68,40 +68,112 @@ public class TerrainTile : MonoBehaviour
         }
     }
 
-    private void Split4Ways()
+    public bool IsPartiallyVisible()
+    {
+        return Visible
+            || (bottomLeft != null && bottomLeft.IsPartiallyVisible())
+            || (bottomRight != null && bottomRight.IsPartiallyVisible())
+            || (topRight != null && topRight.IsPartiallyVisible())
+            || (topLeft != null && topLeft.IsPartiallyVisible());
+    }
+    /** 
+     * return true if dirt was added
+     */
+    public bool AddDirt(Collider2D shape)
+    {
+        //if already fully visible -> no change
+        if (Visible) return true; 
+
+        //if no overlap 
+        if (!OverlapWithExplosion(shape)) return IsPartiallyVisible();
+
+        //end recursion and simply become visible:
+        if (depth < 2)
+        {
+            Visible = true;
+            return true;
+        }
+
+        //check if explosion only covers part of this terrain:
+        Split4Ways();
+        bool dirty = false;
+        if (bottomLeft.AddDirt(shape)) dirty = true; else Destroy(bottomLeft.gameObject);
+        if (bottomRight.AddDirt(shape)) dirty = true; else Destroy(bottomRight.gameObject);
+        if (topRight.AddDirt(shape)) dirty = true; else Destroy(topRight.gameObject);
+        if (topLeft.AddDirt(shape)) dirty = true; else Destroy(topLeft.gameObject);
+
+        StartCoroutine(AttemptMerge());
+
+        return dirty;
+    }
+
+    private System.Collections.IEnumerator AttemptMerge()
     {
 
-        if (bottomLeft != null || bottomRight != null || topLeft != null || topRight != null)
+        yield return null;
+
+        if ((bottomLeft != null && bottomLeft.Visible)
+            && (bottomRight != null && bottomRight.Visible)
+            && (topRight != null && topRight.Visible)
+            && (topLeft != null && topLeft.Visible))
         {
-            return;
+            Visible = true;
+            Destroy(bottomLeft.gameObject);
+            Destroy(bottomRight.gameObject);
+            Destroy(topRight.gameObject);
+            Destroy(topLeft.gameObject);
         }
-        bottomLeft = CreateTile();
-        bottomLeft.gameObject.name = "bottom left " + depth;
-        bottomLeft.transform.SetParent(this.transform, false);
-        bottomLeft.transform.localScale = Vector2.one / 2;
-        bottomLeft.transform.localPosition = new Vector2(-1, -1) / 4;
-        bottomLeft.depth = this.depth - 1;
 
-        bottomRight = CreateTile();
-        bottomRight.gameObject.name = "bottom right " + depth;
-        bottomRight.transform.SetParent(this.transform, false);
-        bottomRight.transform.localScale = Vector2.one / 2;
-        bottomRight.transform.localPosition = new Vector2(1, -1) / 4;
-        bottomRight.depth = this.depth - 1;
 
-        topRight = CreateTile();
-        topRight.gameObject.name = "top right " + depth;
-        topRight.transform.SetParent(this.transform, false);
-        topRight.transform.localScale = Vector2.one / 2;
-        topRight.transform.localPosition = new Vector2(1, 1) / 4;
-        topRight.depth = this.depth - 1;
+    }
 
-        topLeft = CreateTile();
-        topLeft.gameObject.name = "top left " + depth;
-        topLeft.transform.SetParent(this.transform, false);
-        topLeft.transform.localScale = Vector2.one / 2;
-        topLeft.transform.localPosition = new Vector2(-1, 1) / 4;
-        topLeft.depth = this.depth - 1;
+    [ContextMenu("Split4Ways")]
+    public void Split4Ways()
+    {
+
+        if (bottomLeft == null)
+        {
+            bottomLeft = CreateTile();
+            bottomLeft.Visible = false;
+            bottomLeft.gameObject.name = "bottom left " + depth;
+            bottomLeft.transform.SetParent(this.transform, false);
+            bottomLeft.transform.localScale = Vector2.one / 2;
+            bottomLeft.transform.localPosition = new Vector2(-1, -1) / 4;
+            bottomLeft.depth = this.depth - 1;
+        }
+
+        if (bottomRight == null)
+        {
+            bottomRight = CreateTile();
+            bottomRight.Visible = false;
+            bottomRight.gameObject.name = "bottom right " + depth;
+            bottomRight.transform.SetParent(this.transform, false);
+            bottomRight.transform.localScale = Vector2.one / 2;
+            bottomRight.transform.localPosition = new Vector2(1, -1) / 4;
+            bottomRight.depth = this.depth - 1;
+        }
+
+        if (topRight == null)
+        {
+            topRight = CreateTile();
+            topRight.Visible = false;
+            topRight.gameObject.name = "top right " + depth;
+            topRight.transform.SetParent(this.transform, false);
+            topRight.transform.localScale = Vector2.one / 2;
+            topRight.transform.localPosition = new Vector2(1, 1) / 4;
+            topRight.depth = this.depth - 1;
+        }
+
+        if (topLeft == null)
+        {
+            topLeft = CreateTile();
+            topLeft.Visible = false;
+            topLeft.gameObject.name = "top left " + depth;
+            topLeft.transform.SetParent(this.transform, false);
+            topLeft.transform.localScale = Vector2.one / 2;
+            topLeft.transform.localPosition = new Vector2(-1, 1) / 4;
+            topLeft.depth = this.depth - 1;
+        }
     }
 
     private TerrainTile CreateTile()
@@ -126,16 +198,20 @@ public class TerrainTile : MonoBehaviour
 
     }
 
+    private bool OverlapWithExplosion(Collider2D explosion)
+    {
+        return null != Physics2D.OverlapBox(transform.position, transform.lossyScale, 0f, LayerMask.GetMask("Explosion"));
+    }
+
     private bool SplitDamage(Collider2D dmgCollider, int dmg)
     {
         Visible = true;
 
-        if (null == Physics2D.OverlapBox(transform.position, transform.lossyScale, 0f, LayerMask.GetMask("Explosion")))
+        if (!OverlapWithExplosion(dmgCollider))
         {
             //Debug.Log("no explosion found");
             return false;
         }
-        //if (!Physics2D.IsTouching(this._boxCollider, dmgCollider)) return false;
         
         //stop recursion
         if (depth < 2)

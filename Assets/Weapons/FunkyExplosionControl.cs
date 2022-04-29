@@ -19,7 +19,7 @@ public class FunkyExplosionControl : MonoBehaviour
         for (int b=0; b<_projectilesCount; b++)
         {
             MissileControl mis = Instantiate<MissileControl>(_projectiles);
-            mis.explosion = _funkyParticle;
+            mis.explosion = _funkyParticle.gameObject;
             Rigidbody2D rb = mis.GetComponent<Rigidbody2D>();
             rb.transform.position = this.transform.position + Vector3.up;
             rb.transform.rotation = Quaternion.Euler(0, 0, Random.Range(45f, 135f));
