@@ -8,6 +8,7 @@ The DOS game is still downloadable at: http://www.whicken.com/scorch/
   * [x] Baby Missile
   * [x] MIRV
   * [x] Funky Bomb!
+  * [x] Dirt Bomb
 * [x] select active weapon from current inventory
   * [ ] (currently a bit wonky to de-select the window)
 * [x] buy menu between rounds
@@ -18,6 +19,8 @@ The DOS game is still downloadable at: http://www.whicken.com/scorch/
   * [ ] other preferences, like border style, starting money, ...
 * [x] Add human/AI players and provide name for human players
 * [x] naive, big blocks of destructible terrain
+  * [x] home-brewn quadtree colliders will split for explosions and merge for dirt bombs
+  * [ ] suspended dirt does not (yet) fall
 * [X] wind
 * [x] user controls tank
 * [x] baby missile
