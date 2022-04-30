@@ -65,8 +65,8 @@ public class TosserAIPlayer : MonoBehaviour, INode
 
         oldAngle = myTank.Angle;
         oldForce = myTank.Force;
-        newAngle = Random.Range(45, 135f);
-        newForce = Random.Range(250f, 500f);
+        newAngle = Random.Range(30, 150f);
+        newForce = Random.Range(150f, 400f);
         Debug.Log($"angle = {oldAngle} -> {newAngle}, force = {oldForce} -> {newForce} ");
         lastAngleDelta = lastForceDelta = 0f;
         previousShellLanded = lastShellLanded = new Vector3(-1, -1, -1);
@@ -92,19 +92,26 @@ public class TosserAIPlayer : MonoBehaviour, INode
     {
         if (!dead)
         {
+            //missile in-flight; let's track position
             lastShellLanded = position;
         }
+        //missile landed, ignore "current" position and use lastShellLanded
         else if(targetTank == null)
         {
             Debug.Log("That's a hit!");
             return;
+        }
+        else if (256 > (this.transform.position - lastShellLanded).sqrMagnitude)
+        {
+            Debug.Log("That was too close to myself! Let's choose new target");
+            targetTank = null;
         }
         else if (previousShellLanded.Equals(new Vector3(-1, -1, -1)))
         {
             Debug.Log("Shell landed at " + lastShellLanded + ", next shot is random again");
             //we can't calibrate yet; so next shot will be random again
             lastAngleDelta = Random.Range(-20f, 20f);
-            lastForceDelta = Random.Range(-50f, 50f);
+            lastForceDelta = Random.Range(-150f, 150f);
             newAngle = newAngle + lastAngleDelta;
             newForce = newForce + lastForceDelta;
         }
@@ -117,12 +124,7 @@ public class TosserAIPlayer : MonoBehaviour, INode
 
             oldAngle = newAngle;
             oldForce = newForce;
-            if (myDistance < 512)
-            {
-                Debug.Log("That was too close to myself! Let's choose new target");
-                targetTank = null;
-            }
-            else if (previousDistance < lastDistance)
+            if (previousDistance < lastDistance)
             {
                 Debug.Log("getting worse, let's turn the angle/force");
                 if (Random.Range(0, 2) == 0)

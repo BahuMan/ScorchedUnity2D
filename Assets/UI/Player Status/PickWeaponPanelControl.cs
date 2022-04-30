@@ -1,5 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PickWeaponPanelControl: MonoBehaviour
 {
@@ -22,6 +22,16 @@ public class PickWeaponPanelControl: MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        //on any mouse click anywhere, disable this menu again:
+        if (Input.GetMouseButtonUp(0)
+            || Input.GetMouseButtonUp(1)
+            || Input.GetMouseButtonUp(2))
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
     private void FillAvailableWeapons()
     {
         CurrentPlayerPanelControl curPanel = FindObjectOfType<CurrentPlayerPanelControl>();

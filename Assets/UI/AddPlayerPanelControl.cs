@@ -11,6 +11,7 @@ public class AddPlayerPanelControl : MonoBehaviour
         public GenericPlayer LocalHumanPrefab;
         public GenericPlayer MoronPrefab;
         public GenericPlayer TosserPrefab;
+        public GenericPlayer ShooterPrefab;
     }
     [SerializeField] PlayerTypesClass PlayerPrefabs;
 
@@ -22,6 +23,7 @@ public class AddPlayerPanelControl : MonoBehaviour
     
     [SerializeField] Toggle ToggleMoron;
     [SerializeField] Toggle ToggleTosser;
+    [SerializeField] Toggle ToggleShooter;
     [SerializeField] Toggle ToggleNotImplemented;
 
     [SerializeField] Button AddPlayerButton;
@@ -61,13 +63,9 @@ public class AddPlayerPanelControl : MonoBehaviour
         if (EventSystem.current.currentSelectedGameObject == PlayerNameInput.gameObject) return;
 
         //otherwise, these keys form a hotkey:
-        if (Input.GetKeyDown(KeyCode.N) && HumanPlayerPanel.activeSelf)
+        if (Input.GetKeyDown(KeyCode.D))
         {
-            PlayerNameInput.Select();
-        }
-        else if (Input.GetKeyDown(KeyCode.T) && BotPlayerPanel.activeSelf)
-        {
-            ToggleTosser.isOn = true;
+            ExecuteEvents.Execute(AddPlayerButton.gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
         }
         else if (Input.GetKeyDown(KeyCode.M) && BotPlayerPanel.activeSelf)
         {
@@ -75,16 +73,24 @@ public class AddPlayerPanelControl : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.N) && HumanPlayerPanel.activeSelf)
         {
-            ExecuteEvents.Execute(AddPlayerButton.gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
+            PlayerNameInput.Select();
         }
         else if (Input.GetKeyDown(KeyCode.N) && BotPlayerPanel.activeSelf)
         {
             ToggleNotImplemented.isOn = true;
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKeyDown(KeyCode.S) && BotPlayerPanel.activeSelf)
         {
-            ExecuteEvents.Execute(AddPlayerButton.gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
+            ToggleShooter.isOn = true;
         }
+        else if (Input.GetKeyDown(KeyCode.T) && BotPlayerPanel.activeSelf)
+        {
+            ToggleTosser.isOn = true;
+        }
+        //else if (Input.GetKeyDown(KeyCode.N) && HumanPlayerPanel.activeSelf)
+        //{
+        //    ExecuteEvents.Execute(AddPlayerButton.gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
+        //}
     }
 
     public void PlayerName_OnEndEdit(string newname)
@@ -121,17 +127,16 @@ public class AddPlayerPanelControl : MonoBehaviour
             {
                 player = Instantiate<GenericPlayer>(PlayerPrefabs.MoronPrefab);
                 player.gameObject.name = botNames[nextBotName] + " (Moron)";
-                player.PlayerName = botNames[nextBotName];
-                player.PlayerColor = this.PlayerColors[currentColor++];
-                nextBotName++;
             }
             else if (ToggleTosser.isOn)
             {
                 player = Instantiate<GenericPlayer>(PlayerPrefabs.TosserPrefab);
                 player.gameObject.name = botNames[nextBotName] + " (Tosser)";
-                player.PlayerName = botNames[nextBotName];
-                player.PlayerColor = this.PlayerColors[currentColor++];
-                nextBotName++;
+            }
+            else if (ToggleShooter.isOn)
+            {
+                player = Instantiate<GenericPlayer>(PlayerPrefabs.ShooterPrefab);
+                player.gameObject.name = botNames[nextBotName] + " (Shooter)";
             }
             else
             {
@@ -140,6 +145,9 @@ public class AddPlayerPanelControl : MonoBehaviour
             }
         }
         player.transform.position = Vector3.zero;
+        player.PlayerName = botNames[nextBotName];
+        player.PlayerColor = this.PlayerColors[currentColor++];
+        nextBotName++;
         DontDestroyOnLoad(player.gameObject);
         currentPlayerNumber++;
 
