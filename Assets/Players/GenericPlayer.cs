@@ -8,7 +8,7 @@ public class GenericPlayer : MonoBehaviour
     private TankControl preferredTankPrefab;
     public TankControl getPreferredTankPrefab() { return preferredTankPrefab; }
 
-    public enum PlayerTypeEnum { HUMAN, MORON, TOSSER, SHOOTER }
+    public enum PlayerTypeEnum { HUMAN, MORON, TOSSER, SHOOTER, SPOILER }
     public PlayerTypeEnum PlayerType;
     public string PlayerName;
     public Color PlayerColor;

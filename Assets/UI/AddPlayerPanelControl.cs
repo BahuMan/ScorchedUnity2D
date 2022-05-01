@@ -12,6 +12,7 @@ public class AddPlayerPanelControl : MonoBehaviour
         public GenericPlayer MoronPrefab;
         public GenericPlayer TosserPrefab;
         public GenericPlayer ShooterPrefab;
+        public GenericPlayer SpoilerPrefab;
     }
     [SerializeField] PlayerTypesClass PlayerPrefabs;
 
@@ -24,6 +25,7 @@ public class AddPlayerPanelControl : MonoBehaviour
     [SerializeField] Toggle ToggleMoron;
     [SerializeField] Toggle ToggleTosser;
     [SerializeField] Toggle ToggleShooter;
+    [SerializeField] Toggle ToggleSpoiler;
     [SerializeField] Toggle ToggleNotImplemented;
 
     [SerializeField] Button AddPlayerButton;
@@ -67,6 +69,10 @@ public class AddPlayerPanelControl : MonoBehaviour
         {
             ExecuteEvents.Execute(AddPlayerButton.gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
         }
+        else if (Input.GetKeyDown(KeyCode.L) && BotPlayerPanel.activeSelf)
+        {
+            ToggleSpoiler.isOn = true;
+        }
         else if (Input.GetKeyDown(KeyCode.M) && BotPlayerPanel.activeSelf)
         {
             ToggleMoron.isOn = true;
@@ -86,6 +92,9 @@ public class AddPlayerPanelControl : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.T) && BotPlayerPanel.activeSelf)
         {
             ToggleTosser.isOn = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Tab) ) {
+            HumanPCSlider.value = HumanPlayerPanel.activeSelf? 0: 1;
         }
         //else if (Input.GetKeyDown(KeyCode.N) && HumanPlayerPanel.activeSelf)
         //{
@@ -138,14 +147,19 @@ public class AddPlayerPanelControl : MonoBehaviour
                 player = Instantiate<GenericPlayer>(PlayerPrefabs.ShooterPrefab);
                 player.gameObject.name = botNames[nextBotName] + " (Shooter)";
             }
+            else if (ToggleSpoiler.isOn)
+            {
+                player = Instantiate<GenericPlayer>(PlayerPrefabs.SpoilerPrefab);
+                player.gameObject.name = botNames[nextBotName] + " (Spoiler)";
+            }
             else
             {
                 player = null;
                 Debug.Log("That's not going to work ...");
             }
+            player.PlayerName = botNames[nextBotName];
         }
         player.transform.position = Vector3.zero;
-        player.PlayerName = botNames[nextBotName];
         player.PlayerColor = this.PlayerColors[currentColor++];
         nextBotName++;
         DontDestroyOnLoad(player.gameObject);
