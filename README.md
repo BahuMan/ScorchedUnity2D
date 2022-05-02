@@ -50,3 +50,5 @@ The DOS game is still downloadable at: http://www.whicken.com/scorch/
 ![screenshot](info/Screenshot-addplayer.jpg?raw=true)
 ![screenshot](info/Screenshot-2022-04-18.jpg?raw=true)
 ![screenshot](info/Screenshot_menu.jpg?raw=true)
+![screenshot](info/quad-colliders.png?raw=true)
+
