@@ -9,9 +9,14 @@ The DOS game is still downloadable at: http://www.whicken.com/scorch/
   * [x] MIRV
   * [x] Funky Bomb!
   * [x] Dirt Bomb
+* [ ] AI
+  * [x] Moron (shoots completely random)
+  * [x] Shooter (always shoots at max power
+  * [ ] Tosser (needs rework)
+  * [ ] Spoiler (Calculates ballistic trajectory, but doesn't take into account wind or viscosity)
 * [x] select active weapon from current inventory
-  * [ ] (currently a bit wonky to de-select the window)
 * [x] buy menu between rounds
+  * [ ] AI doesn't buy yet
 * [x] at end of round, move to next round (new level, new terrain)
 * [x] main menu
   * [x] sets nr of players
@@ -23,8 +28,7 @@ The DOS game is still downloadable at: http://www.whicken.com/scorch/
   * [ ] suspended dirt does not (yet) fall
 * [X] wind
 * [x] user controls tank
-* [x] baby missile
-* [x] explosion destroys terrain
+* [x] explosion destroys terrain (Dirt bomb adds terrain)
 * [ ] destroyed tank animation
 * [x] GUI reflects current tank's status
   * [x] angle, power and HP are updated real-time; 
@@ -33,11 +37,6 @@ The DOS game is still downloadable at: http://www.whicken.com/scorch/
   * [x] resume, quit, fast-forward work
   * [x] kill all and move to next round
   * [ ] change border, wind options ?
-* [x] Computer controlled tanks
-  * [x] Completely random
-  * [ ] Newton approximation
-  * [ ] straight shooter
-  * [ ] parabola shooter
 * [x] screen borders
   * [x] solid
   * [x] bounce
@@ -45,10 +44,11 @@ The DOS game is still downloadable at: http://www.whicken.com/scorch/
 * [x] use talk files to say something before shooting
 * [ ] use talk files to say something while dying
 * [ ] use destructible terrain from <https://github.com/Ideefixze/DTerrain>
-* [ ] Unsupported terrain should/might drop
 * [ ] Network multiplayer
 
 ![screenshot](info/Screenshot-mainmenu.jpg?raw=true)
 ![screenshot](info/Screenshot-addplayer.jpg?raw=true)
 ![screenshot](info/Screenshot-2022-04-18.jpg?raw=true)
 ![screenshot](info/Screenshot_menu.jpg?raw=true)
+![screenshot](info/quad-colliders.png?raw=true)
+
