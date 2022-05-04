@@ -79,7 +79,11 @@ public class EmptyAI : MonoBehaviour, INode
         newForce = Random.Range(100, Mathf.Min(myTank.HP, 400));
 
         float ignoreLow;
-        InnerCalculateAngle(out ignoreLow, out newAngle);
+        while (!InnerCalculateAngle(out ignoreLow, out newAngle))
+        {
+            newForce *= 1.5f;
+            Debug.Log("Recalculating with force " + newForce);
+        }
         newForce *= 1.2f;
         this.Status = AIStatusEnum.AIMING;
         return TreeStatusEnum.SUCCESS;
