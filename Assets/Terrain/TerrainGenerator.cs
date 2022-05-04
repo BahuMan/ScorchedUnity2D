@@ -30,7 +30,7 @@ public class TerrainGenerator : MonoBehaviour, INode
         topTile.transform.localScale = Vector2.one * Mathf.Pow(2, width-3);
         topTile.depth = width;
         topTile.SplitRandomly();
-        Debug.Break();
+        //Debug.Break();
     }
 
     TreeStatusEnum INode.Tick()

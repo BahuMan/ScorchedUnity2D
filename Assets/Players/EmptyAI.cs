@@ -67,6 +67,13 @@ public class EmptyAI : MonoBehaviour, INode
     protected float aimStartTime = -1;
     virtual protected TreeStatusEnum CalculateAngle()
     {
+        if (myTarget == null)
+        {
+            Debug.Log("calculating angle for a dead target won't do anything");
+            Status = AIStatusEnum.CHOOSETARGET;
+            return TreeStatusEnum.RUNNING;
+        }
+
         oldAngle = myTank.Angle;
         oldForce = myTank.Force;
         newForce = Random.Range(100, Mathf.Min(myTank.HP, 400));
@@ -124,7 +131,8 @@ public class EmptyAI : MonoBehaviour, INode
 
     virtual protected TreeStatusEnum Shooting()
     {
-
+        //since the empty AI does not typically recalculate after firing,
+        //we need to check before firing whether the target is still alive
         if (myTarget == null)
         {
             Debug.Log("Shooting a dead target won't do anything");
@@ -136,8 +144,6 @@ public class EmptyAI : MonoBehaviour, INode
         GameController._instance.RemoveThingToDo(this);
         myTank.Fire();
 
-        //when it's my turn again, I want to choose a new target:
-        this.Status = AIStatusEnum.CHOOSETARGET;
         return TreeStatusEnum.SUCCESS;
     }
 }

@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 985589121435386449}
   m_LocalRotation: {x: 0, y: 0, z: 0.24211664, w: 0.9702472}
-  m_LocalPosition: {x: -0.0543, y: -0.0339, z: 28.910538}
-  m_LocalScale: {x: 0.06971507, y: 0.06971507, z: 0.06971507}
+  m_LocalPosition: {x: -0.08, y: -0.0339, z: 28.910538}
+  m_LocalScale: {x: 0.09858408, y: 0.09858408, z: 0.09858408}
   m_Children: []
   m_Father: {fileID: 2775246941607147563}
   m_RootOrder: 3
@@ -184,7 +184,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.05
+  m_Radius: 0.07
 --- !u!1 &3574394882308619198
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,8 +210,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3574394882308619198}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 28.910538}
-  m_LocalScale: {x: 0.125, y: 0.0375, z: 1}
+  m_LocalPosition: {x: -0.013999999, y: 0, z: 28.910538}
+  m_LocalScale: {x: 0.1767625, y: 0.053028755, z: 1.4141}
   m_Children: []
   m_Father: {fileID: 2775246941607147563}
   m_RootOrder: 0
@@ -292,8 +292,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5316323648761184654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0618, y: 0, z: 28.910538}
-  m_LocalScale: {x: 0.2, y: 0.074744135, z: 1}
+  m_LocalPosition: {x: 0.072000004, y: 0, z: 28.910538}
+  m_LocalScale: {x: 0.28282002, y: 0.10569569, z: 1.4141}
   m_Children: []
   m_Father: {fileID: 2775246941607147563}
   m_RootOrder: 1
@@ -408,8 +408,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7825653239642377914}
   m_LocalRotation: {x: -0, y: -0, z: -0.24211745, w: 0.970247}
-  m_LocalPosition: {x: -0.0543, y: 0.0339, z: 28.910538}
-  m_LocalScale: {x: 0.06971507, y: 0.06971507, z: 0.06971507}
+  m_LocalPosition: {x: -0.08, y: 0.0339, z: 28.910538}
+  m_LocalScale: {x: 0.09858408, y: 0.09858408, z: 0.09858408}
   m_Children: []
   m_Father: {fileID: 2775246941607147563}
   m_RootOrder: 2
