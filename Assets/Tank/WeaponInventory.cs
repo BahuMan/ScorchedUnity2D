@@ -20,7 +20,7 @@ public class WeaponInventory: MonoBehaviour
     [SerializeField] List<WeaponStock> _stock;
     private Dictionary<WeaponEnum, WeaponStock> stock;
 
-    public void Start()
+    private void OnValidate()
     {
         stock = new Dictionary<WeaponEnum, WeaponStock>();
         if (_stock == null) _stock = new List<WeaponStock>(10);
@@ -30,6 +30,9 @@ public class WeaponInventory: MonoBehaviour
         }
         SetStockForWeapon(WeaponEnum.BABY_MISSILE, 666);
         SetStockForWeapon(WeaponEnum.MONEY, Preferences._instance.StartMoney);
+    }
+    public void Start()
+    {
     }
 
     public int GetStockForWeapon(WeaponEnum w)

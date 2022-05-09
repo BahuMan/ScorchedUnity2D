@@ -35,7 +35,7 @@ public class TosserAIPlayer : EmptyAI, INode
     {
         //first guess is random
         if (currentNrTries == 0) return base.CalculateAngle();
-        if (currentNrTries > maxNrTries)
+        if (myTarget == null || currentNrTries > maxNrTries)
         {
             this.Status = AIStatusEnum.CHOOSETARGET;
             return TreeStatusEnum.RUNNING;

@@ -2775,6 +2775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indicator: {fileID: 5725569153440092170, guid: a5a4c64898c524a449a31926e20fb8fb, type: 3}
+  aimTime: 1
   maxNrTries: 5
 --- !u!114 &1058130045
 MonoBehaviour:
@@ -4798,7 +4799,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 341116094}
         m_TargetAssemblyTypeName: ESCMenuHotkey, Assembly-CSharp
-        m_MethodName: ESC_FastForward_Clicked
+        m_MethodName: ESC_KillAll_Clicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

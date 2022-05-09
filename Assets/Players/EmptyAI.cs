@@ -84,7 +84,15 @@ public class EmptyAI : MonoBehaviour, INode
             newForce *= 1.5f;
             Debug.Log("Recalculating with force " + newForce);
         }
-        newForce *= 1.2f;
+        if (Random.Range(0f, 1f) < 0.5f)
+        {
+            newAngle = ignoreLow;
+        }
+        else
+        {
+            //high angle is more influenced by air viscosity
+            newForce *= 1.2f;
+        }
         this.Status = AIStatusEnum.AIMING;
         return TreeStatusEnum.SUCCESS;
     }
