@@ -9,6 +9,10 @@ The DOS game is still downloadable at: http://www.whicken.com/scorch/
   * [x] MIRV
   * [x] Funky Bomb!
   * [x] Dirt Bomb
+  * [ ] Nuke (with appropriate shader)
+* [x] Tracers
+  * [ ] Depending on player preferences
+  * [ ] multiple tracers for MIRV (perhaps instantiate tracers on missile rather than on tank?)
 * [ ] AI
   * [x] Moron (shoots completely random)
   * [x] Shooter (always shoots at max power
@@ -51,4 +55,5 @@ The DOS game is still downloadable at: http://www.whicken.com/scorch/
 ![screenshot](info/Screenshot-2022-04-18.jpg?raw=true)
 ![screenshot](info/Screenshot_menu.jpg?raw=true)
 ![screenshot](info/quad-colliders.png?raw=true)
+![screenshot](info/tracers-2022-05-19.jpg?raw=true)
 

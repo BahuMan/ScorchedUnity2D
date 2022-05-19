@@ -2728,7 +2728,7 @@ MonoBehaviour:
   _NrPlayers: 2
   _NrRounds: 10
   _BorderType: 2
-  _StartMoney: 500
+  _StartMoney: 501
 --- !u!4 &1015055244
 Transform:
   m_ObjectHideFlags: 0
@@ -2789,7 +2789,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c6f5ccdd3da1b419048581bd783345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stock: []
+  _stock:
+  - weapon: 1
+    nrInStock: 666
+  - weapon: 0
+    nrInStock: 500
 --- !u!114 &1058130046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3488,7 +3492,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c6f5ccdd3da1b419048581bd783345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stock: []
+  _stock:
+  - weapon: 1
+    nrInStock: 666
+  - weapon: 0
+    nrInStock: 500
 --- !u!1 &1271713600
 GameObject:
   m_ObjectHideFlags: 0
@@ -3766,7 +3774,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bc2f95035197ea40a433d8c51c56c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AllWeapons: []
+  AllWeapons:
+  - id: 0
+    type: 0
+    description: Credits
+    icon: {fileID: 21300000, guid: 44aacd106b9327641aa424d8feef6e68, type: 3}
+    price: 0
+    prefab: {fileID: 0}
 --- !u!4 &1580977769
 Transform:
   m_ObjectHideFlags: 0
@@ -5347,6 +5361,14 @@ MonoBehaviour:
   _stock:
   - weapon: 4
     nrInStock: 2
+  - weapon: 1
+    nrInStock: 666
+  - weapon: 0
+    nrInStock: 500
+  - weapon: 2
+    nrInStock: 5
+  - weapon: 3
+    nrInStock: 5
 --- !u!1 &2100745014
 GameObject:
   m_ObjectHideFlags: 0
