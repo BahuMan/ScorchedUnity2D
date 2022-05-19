@@ -590,6 +590,13 @@ MonoBehaviour:
   OnForceChanged:
     m_PersistentCalls:
       m_Calls: []
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnShellFired:
+    m_PersistentCalls:
+      m_Calls: []
+  _tracePrefab: {fileID: 4241127162783125408, guid: ed77609423037614dba3b4787baba0c2, type: 3}
 --- !u!114 &2995025732035133145
 MonoBehaviour:
   m_ObjectHideFlags: 0

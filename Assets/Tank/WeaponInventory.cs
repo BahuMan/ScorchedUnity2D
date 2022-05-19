@@ -29,7 +29,7 @@ public class WeaponInventory: MonoBehaviour
             stock.Add(weapon.weapon, weapon);
         }
         SetStockForWeapon(WeaponEnum.BABY_MISSILE, 666);
-        SetStockForWeapon(WeaponEnum.MONEY, Preferences._instance.StartMoney);
+        SetStockForWeapon(WeaponEnum.MONEY, Preferences._instance != null? Preferences._instance.StartMoney: 500);
     }
     public void Start()
     {
