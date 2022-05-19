@@ -68,13 +68,17 @@ public class TosserAIPlayer : EmptyAI, INode
 
     private void TrackShell_UpdateShellPosition(Vector3 position, bool dead)
     {
-        if (!dead)
+        if (myTank == null)
         {
-            //missile in-flight; let's track position
+            //this could happen when I kill myself
+            return;
+        }
+
+        if (!dead) //missile in-flight; let's track position
+        {
             lastShellLanded = position;
         }
-        //missile landed, ignore "current" position and use lastShellLanded
-        else if(myTarget == null)
+        else if(myTarget == null)//missile landed, ignore "current" position and use lastShellLanded
         {
             Debug.Log("That's a hit!");
             this.Status = AIStatusEnum.CHOOSETARGET;
