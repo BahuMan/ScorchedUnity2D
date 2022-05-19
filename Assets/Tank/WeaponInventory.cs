@@ -18,26 +18,27 @@ public class WeaponInventory: MonoBehaviour
 {
 
     [SerializeField] List<WeaponStock> _stock;
-    private Dictionary<WeaponEnum, WeaponStock> stock;
+    private Dictionary<WeaponEnum, WeaponStock> stockMap;
 
     private void OnValidate()
     {
-        stock = new Dictionary<WeaponEnum, WeaponStock>();
+        stockMap = new Dictionary<WeaponEnum, WeaponStock>();
         if (_stock == null) _stock = new List<WeaponStock>(10);
         foreach (var weapon in _stock)
         {
-            stock.Add(weapon.weapon, weapon);
+            stockMap.Add(weapon.weapon, weapon);
         }
         SetStockForWeapon(WeaponEnum.BABY_MISSILE, 666);
         SetStockForWeapon(WeaponEnum.MONEY, Preferences._instance != null? Preferences._instance.StartMoney: 500);
     }
     public void Start()
     {
+        if (stockMap == null) OnValidate();
     }
 
     public int GetStockForWeapon(WeaponEnum w)
     {
-        if (stock.ContainsKey(w)) return stock[w].nrInStock;
+        if (stockMap.ContainsKey(w)) return stockMap[w].nrInStock;
         else return 0;
     }
 
@@ -46,29 +47,29 @@ public class WeaponInventory: MonoBehaviour
         List<WeaponStock> s = new List<WeaponStock>();
         foreach(var w in WeaponInfoControl.WeaponsOfType(t))
         {
-            if (stock.ContainsKey(w))
+            if (stockMap.ContainsKey(w))
             {
-                s.Add(stock[w].copy());
+                s.Add(stockMap[w].copy());
             }
         }
         return s;
     }
     public IEnumerator<WeaponEnum> GetAllWeapons()
     {
-        return stock.Keys.GetEnumerator();
+        return stockMap.Keys.GetEnumerator();
     }
 
     private void SetStockForWeapon(WeaponEnum w, int s)
     {
-        if (!stock.ContainsKey(w))
+        if (!stockMap.ContainsKey(w))
         {
             WeaponStock ws = new WeaponStock { weapon = w, nrInStock = s };
-            stock.Add(w, ws);
+            stockMap.Add(w, ws);
             _stock.Add(ws);
         }
         else
         {
-            stock[w].nrInStock = s;
+            stockMap[w].nrInStock = s;
         }
 
     }
@@ -78,9 +79,9 @@ public class WeaponInventory: MonoBehaviour
         //baby missiles are infinite; never change the number in stock;
         if (w == WeaponEnum.BABY_MISSILE) return 666;
 
-        if (!stock.ContainsKey(w)) stock.Add(w, new WeaponStock { nrInStock = delta, weapon = w });
-        else stock[w].nrInStock += delta;
+        if (!stockMap.ContainsKey(w)) stockMap.Add(w, new WeaponStock { nrInStock = delta, weapon = w });
+        else stockMap[w].nrInStock += delta;
 
-        return stock[w].nrInStock;
+        return stockMap[w].nrInStock;
     }
 }
