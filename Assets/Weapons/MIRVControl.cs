@@ -23,6 +23,7 @@ public class MIRVControl : MonoBehaviour
             for (int i=-2; i<3; ++i)
             {
                 Rigidbody2D m = Instantiate<Rigidbody2D>(reentryVehicle);
+                m.GetComponent<MissileControl>().firedBy = GetComponent<MissileControl>().firedBy;
                 m.transform.position = this.transform.position;
                 m.velocity = new Vector2(_rigid.velocity.x + i*horizontalSpread, 0);
                 GameController._instance.addThingToDo(new WaitForDestruction(m.GetComponent<MissileControl>()));

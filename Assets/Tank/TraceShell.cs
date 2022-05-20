@@ -9,9 +9,9 @@ public class TraceShell : MonoBehaviour
     
     private Transform _projectile;
     private float _nextStep;
-    private GenericPlayer _player;
+    private Color _playerColor;
 
-    public void Trace(Transform theProjectile, GenericPlayer pl)
+    public void Trace(Transform theProjectile, Color playerColor)
     {
 
         _nextStep = Time.time + timeStep;
@@ -19,9 +19,9 @@ public class TraceShell : MonoBehaviour
         myLine.positionCount = 2;
         myLine.SetPosition(0, theProjectile.position);
         myLine.SetPosition(1, theProjectile.position);
-        myLine.startColor = pl.PlayerColor - new Color(0,0,0,.5f);
-        myLine.endColor = pl.PlayerColor - new Color(0, 0, 0, .5f);
-        _player = pl;
+        myLine.startColor = playerColor - new Color(0,0,0,.5f);
+        myLine.endColor = playerColor - new Color(0, 0, 0, .5f);
+        _playerColor = playerColor;
     }
 
     // Update is called once per frame
@@ -40,7 +40,7 @@ public class TraceShell : MonoBehaviour
         {
             Debug.Log("splitting trace");
             TraceShell newTrace = Instantiate<TraceShell>(this);
-            newTrace.Trace(_projectile, _player);
+            newTrace.Trace(_projectile, _playerColor);
             Destroy(this);
             return;
         }

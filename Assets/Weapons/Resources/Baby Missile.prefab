@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 5686840915573396872, guid: e2b1b863d2e61124e9a4908ec0b0443b, type: 3}
+  traceShell: {fileID: 4241127162783125408, guid: ed77609423037614dba3b4787baba0c2, type: 3}
   firedBy: {fileID: 0}
 --- !u!114 &3260658413557795225
 MonoBehaviour:

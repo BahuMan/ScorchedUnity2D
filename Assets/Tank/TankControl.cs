@@ -18,8 +18,6 @@ public class TankControl : MonoBehaviour
     public UnityEvent<int> OnHealthChanged;
     public UnityEvent<Rigidbody2D> OnShellFired;
 
-    public TraceShell _tracePrefab;
-
     public void Fire()
     {
         Rigidbody2D projectile = Instantiate<Rigidbody2D>(shell);
@@ -31,9 +29,6 @@ public class TankControl : MonoBehaviour
         m.firedBy = this;
         GameController._instance.addThingToDo(new WaitForDestruction(m));
         if (OnShellFired != null) OnShellFired.Invoke(projectile);
-
-        TraceShell t = Instantiate<TraceShell>(_tracePrefab);
-        t.Trace(projectile.transform, Player);
     }
 
     private void Update()

@@ -4,6 +4,8 @@ public class MissileControl : MonoBehaviour
 {
     [SerializeField]
     public GameObject explosion;
+    [SerializeField]
+    public TraceShell traceShell;
 
     private float startTime;
     public TankControl firedBy;
@@ -29,6 +31,11 @@ public class MissileControl : MonoBehaviour
     {
         _rigid = GetComponent<Rigidbody2D>();
         startTime = Time.time;
+        if (traceShell != null)
+        {
+            TraceShell tc = Instantiate<TraceShell>(traceShell);
+            tc.Trace(this.transform, firedBy.GetPlayer().PlayerColor);
+        }
     }
 
     private void FixedUpdate()

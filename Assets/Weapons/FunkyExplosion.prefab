@@ -240,3 +240,4 @@ MonoBehaviour:
   _projectilesCount: 5
   minPower: 30
   maxPower: 100
+  traceShell: {fileID: 4241127162783125408, guid: ed77609423037614dba3b4787baba0c2, type: 3}
