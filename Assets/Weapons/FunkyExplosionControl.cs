@@ -23,8 +23,10 @@ public class FunkyExplosionControl : MonoBehaviour
             TraceShell tc = Instantiate<TraceShell>(traceShell);
             mis.explosion = _funkyParticle.gameObject;
             Rigidbody2D rb = mis.GetComponent<Rigidbody2D>();
-            rb.transform.position = this.transform.position + Vector3.up;
-            rb.transform.rotation = Quaternion.Euler(0, 0, Random.Range(45f, 135f));
+            rb.transform.SetPositionAndRotation(
+                this.transform.position + Vector3.up,
+                Quaternion.Euler(0, 0, Random.Range(45f, 135f))
+            );
             rb.velocity = rb.transform.right * Random.Range(minPower, maxPower) / TankControl.ForceMultiplier;
             tc.Trace(mis.transform, Random.ColorHSV(0f, 1f, .7f, 1f, .5f, 1f, 1f, 1f));
             GameController._instance.addThingToDo(new WaitForDestruction(mis));
